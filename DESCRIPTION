@@ -1,0 +1,33 @@
+Package: tanggle
+Type: Package
+Title: Visualization of Phylogenetic Networks
+Version: 0.99.0
+Authors@R: c(person("Klaus", "Schliep", email="klaus.schliep@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2941-0161")),
+             person("Marta", "Vidal-Garcia", role="aut"), 
+             person("Claudia", "Solis-Lemus", role="aut"), 
+             person("Leann", "Biancani", role="aut"), 
+             person("Eren", "Ada", role="aut"), 
+             person("L. Francisco", "Henao Diaz", role="aut"), 
+             person("Guangchuang", "Yu", role = c("ctb")))
+Description: 'ggplot2' like system to plot phylogentic networks from 'ape' and 'phangorn'.
+Depends:
+    R (>= 3.6),
+    ggplot2 (>= 2.2.0),
+    ggtree
+Imports: 
+    magrittr,
+    ape (>= 5.0), 
+    phangorn (>= 2.5),
+    utils
+Suggests:
+    vdiffr, 
+    testthat, 
+    BiocStyle,
+    ggimage,
+    knitr
+VignetteBuilder: knitr    
+biocViews: Software, Visualization
+License: AGPL (>= 3)
+URL: https://github.com/KlausVigo/tanggle
+BugReports: https://github.com/KlausVigo/tanggle/issues
+RoxygenNote: 7.0.0

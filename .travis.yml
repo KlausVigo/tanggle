@@ -1,0 +1,48 @@
+# Sample .travis.yml for R projects from https://github.com/craigcitro/r-travis
+
+language: r
+r:
+  - bioc-devel
+
+cache: packages
+bioc_required: true
+
+
+env:
+  - WARNINGS_ARE_ERRORS=false
+
+
+r_packages:
+  - ape
+  - phangorn
+  - ggplot2
+  - vdiffr
+  - magrittr
+  - knitr
+  - covr
+  - testthat
+
+bioc_packages:
+  - ggtree
+  - BiocStyle
+  - BiocCheck
+
+#r_github_packages:
+#  - jimhester/covr
+
+before_install:
+  - tlmgr install bera
+  - tlmgr install nowidow
+  - tlmgr install parnotes
+  - tlmgr install marginfix
+#  - Rscript -e 'update.packages(ask = FALSE)'
+
+after_success:
+  - Rscript -e 'library(covr);coveralls();codecov()'
+
+bioc_check: true
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
