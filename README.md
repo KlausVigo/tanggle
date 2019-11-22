@@ -4,8 +4,7 @@
 
 
 
-
-tanggle
+tanggle <img src="inst/Logo.png" align="right" width="120" />
 ========================================================
 
 tanggle provides function to plot phylogenetic networks of class `evonet` from *ape* and split graphs of class `networx` from *phangorn*.
@@ -37,3 +36,5 @@ Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: a
 License
 -------
 tanggle is licensed under the AGPL v3.
+
+<img src="inst/spider.png" align="left" width="120" />
