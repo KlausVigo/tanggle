@@ -37,6 +37,9 @@ before_install:
   - tlmgr install marginfix
 #  - Rscript -e 'update.packages(ask = FALSE)'
 
+before_script:
+  - sudo apt install libmagick++-dev
+
 after_success:
   - Rscript -e 'library(covr);coveralls();codecov()'
 
