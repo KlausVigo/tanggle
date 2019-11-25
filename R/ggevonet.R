@@ -55,6 +55,7 @@ fortify.evonet <- function(model, data, layout="rectangular", ladderize=FALSE,
 #' @importFrom ggplot2 coord_polar
 #' @importFrom ggplot2 aes
 #' @importFrom ggplot2 aes_
+#' @importFrom ggplot2 aes_string
 #' @importFrom ggtree geom_tree2
 #' @importFrom ggtree theme_tree
 #' @importFrom phangorn coords
@@ -88,7 +89,7 @@ ggevonet <- function (tr, mapping=NULL, layout="slanted", open.angle=0,
     else {
         mapping <- modifyList(aes_(~x, ~y), mapping)
     }
-    mapping <- modifyList(aes(linetype = hybridEdge), mapping)
+    mapping <- modifyList(aes_string(linetype = "hybridEdge"), mapping)
     p <- ggplot(tr, mapping=mapping, layout=layout, mrsd=mrsd, as.Date=as.Date,
                 yscale=yscale, yscale_mapping=yscale_mapping,
                 ladderize=ladderize, right=right, branch.length=branch.length,
@@ -197,12 +198,12 @@ node.depth.evonet <- function(x, ...){
         tmp <- which(active)[1]  #sample(active,1)
         candidates <- c(candidates, desc[[candidates[tmp] ]])
         candidates <- candidates[candidates>nTip]
-        d <- d+1
+        d <- d + 1
         done[candidates[tmp]] <- TRUE
         depth[candidates[tmp]] <- d
         candidates <- candidates[-tmp]
     }
-    depth <- d+2 - depth
+    depth <- d + 2 - depth
     depth[seq_len(nTip)] <- 1
     depth
 }
