@@ -30,4 +30,4 @@ biocViews: Software, Visualization
 License: AGPL (>= 3)
 URL: https://github.com/KlausVigo/tanggle
 BugReports: https://github.com/KlausVigo/tanggle/issues
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.1
