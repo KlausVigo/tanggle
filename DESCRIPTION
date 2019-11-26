@@ -20,8 +20,7 @@ Imports:
     phangorn (>= 2.5),
     utils
 Suggests:
-    vdiffr, 
-    testthat, 
+    tinytest, 
     BiocStyle,
     ggimage,
     knitr
