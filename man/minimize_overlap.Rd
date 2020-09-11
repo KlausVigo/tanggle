@@ -31,7 +31,7 @@ ggevonet(fishnet)
 ggevonet(new_tre)
 
 net2 <- ape::read.evonet(text="(15,(1,((14,(#H1,(((12,13),(11,#H3)),(7,
-   ((10)#H3,(8,9)))))),((((2,3))#H2,(6,(5,(#H2,4)))))#H1)));")
+    ((10)#H3,(8,9)))))),((((2,3))#H2,(6,(5,(#H2,4)))))#H1)));")
 # Cui et al. 2013 Evol.
 new_net2 <- minimize_overlap(net2)
 ggevonet(net2)

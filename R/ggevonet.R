@@ -6,7 +6,7 @@ magrittr::'%>%'
 #' @importFrom ggplot2 fortify
 #' @export
 fortify.evonet <- function(model, data, layout="rectangular", ladderize=FALSE,
-                    right=FALSE, mrsd=NULL, as.Date  =FALSE, ...){
+                    right=FALSE, mrsd=NULL, as.Date=FALSE, ...){
     class(model) <- "phylo"
 #  ggtree:::fortify.phylo
     df <- fortify(model, ladderize=ladderize)
@@ -55,6 +55,7 @@ fortify.evonet <- function(model, data, layout="rectangular", ladderize=FALSE,
 #' @importFrom ggplot2 coord_polar
 #' @importFrom ggplot2 aes
 #' @importFrom ggplot2 aes_
+#' @importFrom ggplot2 aes_string
 #' @importFrom ggtree geom_tree2
 #' @importFrom ggtree theme_tree
 #' @importFrom phangorn coords
@@ -88,7 +89,7 @@ ggevonet <- function (tr, mapping=NULL, layout="slanted", open.angle=0,
     else {
         mapping <- modifyList(aes_(~x, ~y), mapping)
     }
-    mapping <- modifyList(aes(linetype = hybridEdge), mapping)
+    mapping <- modifyList(aes_string(linetype = "hybridEdge"), mapping)
     p <- ggplot(tr, mapping=mapping, layout=layout, mrsd=mrsd, as.Date=as.Date,
                 yscale=yscale, yscale_mapping=yscale_mapping,
                 ladderize=ladderize, right=right, branch.length=branch.length,
@@ -122,7 +123,7 @@ ggevonet <- function (tr, mapping=NULL, layout="slanted", open.angle=0,
 #' ggevonet(new_tre)
 #'
 #' net2 <- ape::read.evonet(text="(15,(1,((14,(#H1,(((12,13),(11,#H3)),(7,
-#'    ((10)#H3,(8,9)))))),((((2,3))#H2,(6,(5,(#H2,4)))))#H1)));")
+#'     ((10)#H3,(8,9)))))),((((2,3))#H2,(6,(5,(#H2,4)))))#H1)));")
 #' # Cui et al. 2013 Evol.
 #' new_net2 <- minimize_overlap(net2)
 #' ggevonet(net2)
@@ -139,7 +140,7 @@ minimize_overlap <- function(x){
         best_c <- -1
         #        r_hist[j] <- best_r
         nodes2rot <- intersect(sort(unique(unlist(Ancestors(x,
-                                                            c(x$reticulation))))), which(tabulate(x$edge[,1]) > 1) )
+            c(x$reticulation))))), which(tabulate(x$edge[,1]) > 1) )
         for(i in seq_along(nodes2rot)){
             nh <- node.height(ape::rotate(x, nodes2rot[i]))
             best_nr <- sum(abs(nh[x$reticulation[,1]] - nh[x$reticulation[,2]]))
@@ -182,8 +183,7 @@ node.depth.evonet <- function(x, ...){
     pa[x$edge[ind,2]] <- x$edge[ind,1]
     for(i in seq_len(nrow(x$reticulation))){
         pa[[x$reticulation[i,2]]] <- sort( c(pa[[x$reticulation[i,2]]],
-                                             x$reticulation[i,1] ) )
-        #       pa[[x$reticulation[i,1] ]] <- numeric(0)
+                                            x$reticulation[i,1] ) )
     }
     ind <- which(lengths(pa) > 0)
     depth <- numeric(max_nodes)
@@ -198,12 +198,12 @@ node.depth.evonet <- function(x, ...){
         tmp <- which(active)[1]  #sample(active,1)
         candidates <- c(candidates, desc[[candidates[tmp] ]])
         candidates <- candidates[candidates>nTip]
-        d <- d+1
+        d <- d + 1
         done[candidates[tmp]] <- TRUE
         depth[candidates[tmp]] <- d
         candidates <- candidates[-tmp]
     }
-    depth <- d+2 - depth
+    depth <- d + 2 - depth
     depth[seq_len(nTip)] <- 1
     depth
 }
