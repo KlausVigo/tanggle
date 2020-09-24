@@ -6,17 +6,15 @@ output:
         toc: true
         toc_depth: 2
 geometry: margin=2.5cm
+header-includes:
+- \usepackage{fancyhdr}
+- \usepackage{lipsum}
+- \pagestyle{fancy}
+- \fancyhead[CO,CE]{This is fancy header}
+- \fancyfoot[CO,CE]{And this is a fancy footer}
+- \fancyfoot[LE,RO]{\thepage}
+- \fancypagestyle{plain}{\pagestyle{fancy}}
 
-vignette: >
-  %\VignetteIndexEntry{***tanggle***: an R package for visualization of phylogenetic networks in a *ggplot2* framework}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
-  \usepackage{lastpage}
-  \usepackage{fancyhdr}
-  \pagestyle{fancy}
-  \fancyhead[CO,CE]{Your Document Header}
-  \fancyfoot[CO,CE]{And this is a fancy footer}
-  \fancyfoot[RE,RO]{\thepage}
 bibliography: tanggle_references.bib
 ---
 <!--- Define Headers and Footers --->
@@ -148,12 +146,12 @@ A consensus split network is then computed using the function `consensusNet`
 in *phangorn* [@Schliep2011].
     
 * Sequences in nexus, fasta or phylip format, read with the function
-    `read.phyDat` in *phangorn* or the function $read.dna$ in
+    `read.phyDat` in *phangorn* [@Schliep2011] or the function `read.dna` in
     *ape* [@Paradis2018]. Distances matrices are then computed for specific models of
-    evolution using the function $dist.ml$ in *phangorn* [@Schliep2011] or $dist.dna$
+    evolution using the function `dist.ml` in *phangorn* [@Schliep2011] or `dist.dna`
     in *ape* [@Paradis2018]. From the distance matrix, a split network is reconstructed
-    using the function $neighborNet$ in *phangorn* [@Schliep2011]. ***Optional***: branch
-    lengths may be estimated using the function $splitsNetworks$ in
+    using the function `neighborNet` in *phangorn* [@Schliep2011]. ***Optional***: branch
+    lengths may be estimated using the function `splitsNetworks` in
     *phangorn* [@Schliep2011].
 
 
@@ -174,29 +172,31 @@ ggsplitnet(Nnet) + geom_point(aes(shape=isTip, color=isTip), size=3)
 \section{Plotting Explicit Networks}
 ### 4.3. Plotting Explicit Networks
 
-The function $ggevonet$ plots explicit networks (phylogenetic trees
-with reticulations). A recent addition to \CRANpkg{ape} \cite{Paradis2018} made
-it possible to read in trees in extended newick format \cite{Cardona2008}.
+The function `ggevonet` plots explicit networks (phylogenetic trees
+with reticulations). A recent addition to *ape* [@Paradis2018] made
+it possible to read in trees in extended newick format [@Cardona2008].
 
-<<>>=
-## read in an explicit network (example from Fig. 2 in Cardona et al. 2008):
+Read in an explicit network (example from Fig. 2 in Cardona et al. 2008):
+```{r}
 z <- read.evonet(text = "((1,((2,(3,(4)Y#H1)g)e,(((Y#H1,5)h,6)f)X#H2)c)a,
                  ((X#H2,7)d,8)b)r;")
+```
 
-#### plot an explicit network:
+Plot an explicit network:
+```{r}
 ggevonet(z) + geom_tiplab() + geom_nodelab()
 p <- ggevonet(z, layout = "slanted") + geom_tiplab() + geom_nodelab()
 p + geom_tiplab(size=3, color="purple")
 p + geom_nodepoint(color="#b5e521", alpha=1/4, size=10)
 
-@
+```
 
 \section{Summary}
 ## 5. Summary
 
 The split network plots should take most of the functions compatible with
 unrooted trees in ggtree. The explicit network plots are phylogram or slanted.
-Not all options may work as intended yet.
+Not all options may work as intended yet. --> perhaps get rid of this?
 
 \url{https://bioconductor.org/packages/devel/bioc/vignettes/ggtree/inst/doc/treeVisualization.html}
 
@@ -205,7 +205,7 @@ Not all options may work as intended yet.
 \nocite{Schliep2011}
 \nocite{Schliep2017}
 \nocite{Paradis2004}
-% \nocite{Paradis2018}
+\nocite{Paradis2018}
 \nocite{Holland2004}
 \nocite{Yu2017}
 \nocite{Bryant2004}
