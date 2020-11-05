@@ -60,7 +60,6 @@ Thumbs.db
 *.mtc
 *.mtc1
 *.synctex.gz
-*.pdf
 *.bst
 
 
@@ -144,3 +143,5 @@ Backup[ ]of[ ]*.numbers/
 
 ### Mathematica
 *.nb
+.Rproj.user
+inst/doc
