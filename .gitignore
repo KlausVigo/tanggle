@@ -145,3 +145,5 @@ Backup[ ]of[ ]*.numbers/
 *.nb
 .Rproj.user
 inst/doc
+
+vignettes/old/
