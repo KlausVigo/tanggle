@@ -68,7 +68,7 @@ Last updated on `r Sys.Date()`.
 \section{Introduction}
 ## 1. Introduction
 
-Here we present a vignette for the R package ***tanggle***, and provide an overview of its functions and their usage. ***tanggle*** extends the *ggtree* R package [@Yu2017]  to allow
+Here we present a vignette for the R package ***tanggle***, and provide an overview of its functions and their usage. ***Tanggle*** extends the *ggtree* R package [@Yu2017]  to allow
 for the visualization of several types of phylogenetic networks using the
 *ggplot2* [@Wickham2016] syntax. More specifically,
 *tanggle* contains functions to allow the user to effectively plot: (1) split (i.e. implicit) networks
@@ -218,7 +218,7 @@ p + geom_nodepoint(color="#b5e521", alpha=1/4, size=10)
 \section{Summary}
 ## 5. Summary
 
-This vignette illustrates all the functions in the R package ***tanggle***, and [rovide some examples on how to plot both explicit and implicit networks. The split network plots should take most of the functions compatible with unrooted trees in ggtree. The explicit network plots are phylogram or slanted.
+This vignette illustrates all the functions in the R package ***tanggle***, and provides some examples on how to plot both explicit and implicit networks. The split network plots should take most of the functions compatible with unrooted trees in ggtree. The explicit network plots are phylogram or slanted.
 
 \url{https://bioconductor.org/packages/devel/bioc/vignettes/ggtree/inst/doc/treeVisualization.html}
 
