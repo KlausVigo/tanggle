@@ -19,6 +19,13 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("ggtree")
 ```
 
+You also need to install *ggplot* and *phangorn*. If you are unsure if you have installed these packages, you can quickly run the code below:
+```
+packages_needed <- c("ggplot2", "phangorn")
+ packages_to_install <- packages_needed[!(packages_needed %in% installed.packages()[,"Package"])]
+ if(length(packages_to_install)) install.packages(packages_to_install)
+```
+
 If you use tanggle please cite:
 
 Paradis E. & Schliep K. 2018. ape 5.0: an environment for modern phylogenetics 
