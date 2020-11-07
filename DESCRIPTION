@@ -20,10 +20,11 @@ Imports:
     phangorn (>= 2.5),
     utils
 Suggests:
-    tinytest, 
+    tinytest,
     BiocStyle,
     ggimage,
-    knitr
+    knitr,
+    rmarkdown
 VignetteBuilder: knitr    
 biocViews: Software, Visualization
 License: AGPL (>= 3)
