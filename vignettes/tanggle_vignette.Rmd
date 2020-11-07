@@ -47,7 +47,7 @@ knitr::opts_chunk$set(
 ```
 
 \center
-![](/Users/Marta/Documents/PROJECTS/SIDE_PROJECTS/SCHLIEP_SOLIS-LEMUS_tanggle/tanggle/inst/Logo.png){width=70%}
+![](../inst/Logo.png){width=70%}
 \center
 
 Klaus Schliep^[klaus.schliep@gmail.com], Marta Vidal-García^[marta.vidalga@gmail.com], Leann Biancani,
@@ -114,7 +114,6 @@ install_github("KlausVigo/tanggle")
 
 And load all the libraries:
 ```{r, echo=TRUE, results='hide'}
-library(devtools)
 library(tanggle, quietly=T)
 library(phangorn, quietly=T)
 library(ggtree, quietly=T)
