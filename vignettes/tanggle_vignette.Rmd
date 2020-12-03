@@ -93,22 +93,25 @@ Function name | Brief description |
 
 Load the necessary libraries:
 
-```{r, echo=TRUE, results='hide'}
+```{r, echo=TRUE, results='hide', eval=FALSE}
 packages_needed <- c("ggplot2", "ggtree", "phangorn")
 packages_to_install <- packages_needed[!(packages_needed %in% installed.packages()[,"Package"])]
 if(length(packages_to_install)) install.packages(packages_to_install)
 
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("ggtree")
 ```
 
 If you need to install *ggtree* from github:
 ```{r, eval=FALSE}
-library(devtools)
+library(remotes)
 install_github("YuLab-SMU/ggtree")
 ```
 
 Install *tanggle* from the github repository:
 ```{r, eval=FALSE}
-library(devtools)
+library(remotes)
 install_github("KlausVigo/tanggle")
 ```
 
@@ -225,7 +228,6 @@ This vignette illustrates all the functions in the R package ***tanggle***, and 
 
 \nocite{Schliep2011}
 \nocite{Schliep2017}
-\nocite{Paradis2004}
 \nocite{Paradis2018}
 \nocite{Holland2004}
 \nocite{Yu2017}
