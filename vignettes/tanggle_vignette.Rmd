@@ -117,9 +117,9 @@ install_github("KlausVigo/tanggle")
 
 And load all the libraries:
 ```{r, echo=TRUE, results='hide'}
-library(tanggle, quietly=T)
-library(phangorn, quietly=T)
-library(ggtree, quietly=T)
+library(tanggle, quietly=TRUE)
+library(phangorn, quietly=TRUE)
+library(ggtree, quietly=TRUE)
 ```
 
 ***
@@ -226,15 +226,7 @@ This vignette illustrates all the functions in the R package ***tanggle***, and 
 
 
 
-\nocite{Schliep2011}
 \nocite{Schliep2017}
-\nocite{Paradis2018}
-\nocite{Holland2004}
-\nocite{Yu2017}
-\nocite{Bryant2004}
-\nocite{Huson2006}
-\nocite{Cardona2008}
-\nocite{Wickham2016}
 
 
 \newpage
