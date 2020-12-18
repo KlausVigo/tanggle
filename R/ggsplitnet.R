@@ -1,32 +1,30 @@
-
 #' @method fortify networx
 #' @importFrom phangorn getRoot
 #' @export
-fortify.networx <- function(model, data, layout="unrooted", ladderize=FALSE,
-                            right=FALSE, mrsd=NULL, as.Date=FALSE, ...){
-    ##    root <- getRoot(model)
+fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
+                            right = FALSE, mrsd = NULL, as.Date = FALSE, ...) {
+    ## root <- getRoot(model)
     nTips <- length(model$tip.label)
     label <- character(nrow(model$edge))
     isTip <- logical(nrow(model$edge))  ## edge leading to tip
-    if(!is.null(model$translate)){
-        ind <- match(model$translate$node, model$edge[,2])
+    if (!is.null(model$translate)) {
+        ind <- match(model$translate$node, model$edge[, 2])
         label[ind] <- model$translate$label
-    }
-    else{
-        ind <- match(seq_len(nTips), model$edge[,2])
+    } else {
+        ind <- match(seq_len(nTips), model$edge[, 2])
         label[ind] <- model$tip.label
     }
     isTip[ind] <- TRUE
-    df <- data.frame(node=model$edge[,2], parent=model$edge[,1],
-                    branch.length=model$edge.length, split=model$splitIndex,
-                    label=label, isTip=isTip)
-    if(!is.null(model$.plot)) coord <- model$.plot$vertices
-    else coord <- coords(model, dim="equal_angle")
-    df <- cbind(df, x=coord[df$node,1], y=coord[df$node,2],
-                xend=coord[df$parent,1], yend=coord[df$parent,2])
-    angle <- atan2(df$y - df$yend, df$x - df$xend) * 360 / (2*pi)
-    angle[angle<0] <- angle[angle<0] + 360
-    df <- cbind(df, angle=angle)
+    df <- data.frame(node = model$edge[, 2], parent = model$edge[, 1],
+                     branch.length = model$edge.length,
+                     split = model$splitIndex, label = label, isTip = isTip)
+    if (!is.null(model$.plot)) coord <- model$.plot$vertices
+    else coord <- coords(model, dim = "equal_angle")
+    df <- cbind(df, x = coord[df$node, 1], y = coord[df$node, 2],
+                xend = coord[df$parent, 1], yend = coord[df$parent, 2])
+    angle <- atan2(df$y - df$yend, df$x - df$xend) * 360/(2 * pi)
+    angle[angle < 0] <- angle[angle < 0] + 360
+    df <- cbind(df, angle = angle)
     df
 }
 
@@ -67,33 +65,31 @@ fortify.networx <- function(model, data, layout="unrooted", ladderize=FALSE,
 #' @importFrom ggtree theme_tree
 #' @author Klaus Schliep
 #' @examples
-#' data(yeast, package="phangorn")
+#' data(yeast, package='phangorn')
 #' dm <- phangorn::dist.ml(yeast)
 #' nnet <- phangorn::neighborNet(dm)
 #' ggsplitnet(nnet) + geom_tiplab2()
 #'
 #'
 #' @export
-ggsplitnet <- function (tr, mapping=NULL, layout="slanted", open.angle=0,
-                mrsd=NULL, as.Date=FALSE, yscale="none", yscale_mapping=NULL,
-                ladderize=FALSE, right=FALSE, branch.length="branch.length",
-                ndigits=NULL, ...)
-{
+ggsplitnet <- function(tr, mapping = NULL, layout = "slanted", open.angle = 0,
+                       mrsd = NULL, as.Date = FALSE, yscale = "none",
+                       yscale_mapping = NULL, ladderize = FALSE, right = FALSE,
+                       branch.length = "branch.length", ndigits = NULL, ...) {
     layout <- match.arg(layout, c("slanted"))
-    # "rectangular", "fan", "circular", "radial", "unrooted", "equal_angle",
-    #    "daylight"
+    # 'rectangular', 'fan', 'circular', 'radial', 'unrooted', 'equal_angle',
+    # 'daylight'
     if (is.null(mapping)) {
         mapping <- aes_(~x, ~y)
-    }
-    else {
+    } else {
         mapping <- modifyList(aes_(~x, ~y), mapping)
     }
-    p <- ggplot(tr, mapping=mapping, layout=layout, mrsd=mrsd, as.Date=as.Date,
-                yscale=yscale, yscale_mapping=yscale_mapping,
-                ladderize=ladderize, right=right, branch.length=branch.length,
-                ndigits=ndigits, ...)
-
-    p <- p + geom_splitnet(layout=layout, ...)
+    p <- ggplot(tr, mapping = mapping, layout = layout, mrsd = mrsd,
+                as.Date = as.Date, yscale = yscale,
+                yscale_mapping = yscale_mapping, ladderize = ladderize,
+                right = right, branch.length = branch.length,
+                ndigits = ndigits, ...)
+    p <- p + geom_splitnet(layout = layout, ...)
     p <- p + theme_tree()
     class(p) <- c("ggtree", class(p))
     return(p)
@@ -112,7 +108,7 @@ ggsplitnet <- function (tr, mapping=NULL, layout="slanted", open.angle=0,
 ##' @param ... additional parameter
 ##' @return splitnet layer
 ##' @examples
-##' data(yeast, package="phangorn")
+##' data(yeast, package='phangorn')
 ##' dm <- phangorn::dist.ml(yeast)
 ##' nnet <- phangorn::neighborNet(dm)
 ##' ggplot(nnet, aes(x, y))  + geom_splitnet() + theme_tree()
@@ -120,18 +116,16 @@ ggsplitnet <- function (tr, mapping=NULL, layout="slanted", open.angle=0,
 ##' @importFrom ggplot2 aes
 ##' @export
 ##' @author Klaus Schliep
-geom_splitnet <- function(layout="slanted", ...) {
+geom_splitnet <- function(layout = "slanted", ...) {
     x <- y <- xend <- yend <- parent <- NULL
     lineend <- "round"
     if (layout == "rectangular" || layout == "fan" || layout == "circular") {
-        list(
-            geom_segment(aes(x=x, xend=xend, y=y, yend=y),
-                        lineend=lineend, ...),
-            geom_segment(aes(x=xend, xend=xend, y=y, yend=yend),
-                        lineend=lineend, ...)
-        )
-    } else if (layout == "slanted" || layout == "radial" ||
-                layout == "unrooted") {
-        geom_segment(aes(x=x, xend=xend, y=y, yend=yend), lineend=lineend, ...)
+        list(geom_segment(aes(x = x, xend = xend, y = y, yend = y), lineend = lineend,
+                          ...), geom_segment(aes(x = xend, xend = xend, y = y, yend = yend), lineend = lineend,
+                                             ...))
+    } else if (layout == "slanted" || layout == "radial" || layout == "unrooted") {
+        geom_segment(aes(x = x, xend = xend, y = y, yend = yend), lineend = lineend,
+                     ...)
     }
 }
+
