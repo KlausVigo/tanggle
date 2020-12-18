@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/KlausVigo/tanggle.svg?branch=master)](https://travis-ci.org/KlausVigo/tanggle)
+[![R-CMD-check](https://github.com/KlausVigo/tanggle/workflows/R-CMD-check/badge.svg)](https://github.com/KlausVigo/tanggle/actions)
 [![codecov](https://codecov.io/gh/KlausVigo/tanggle/branch/master/graph/badge.svg)](https://codecov.io/gh/KlausVigo/tanggle)
 [![Coverage Status](https://coveralls.io/repos/github/KlausVigo/tanggle/badge.svg?branch=master)](https://coveralls.io/github/KlausVigo/tanggle?branch=master)
 
