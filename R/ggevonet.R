@@ -5,8 +5,8 @@ magrittr::"%>%"
 #' @method fortify evonet
 #' @importFrom ggplot2 fortify
 #' @export
-fortify.evonet <- function(model, data, layout = "rectangular", ladderize = FALSE,
-                           right = FALSE, mrsd = NULL, as.Date = FALSE, ...) {
+fortify.evonet <- function(model, data, layout = "rectangular",
+        ladderize = FALSE, right = FALSE, mrsd = NULL, as.Date = FALSE, ...) {
     class(model) <- "phylo"
     # ggtree:::fortify.phylo
     df <- fortify(model, ladderize = ladderize)
@@ -66,10 +66,9 @@ fortify.evonet <- function(model, data, layout = "rectangular", ladderize = FALS
 #' ggevonet(enet) + geom_tiplab()
 #' @export
 ggevonet <- function(tr, mapping = NULL, layout = "slanted", open.angle = 0,
-                     mrsd = NULL, as.Date = FALSE, yscale = "none",
-                     yscale_mapping = NULL, ladderize = FALSE, right = FALSE,
-                     branch.length = "branch.length", ndigits = NULL,
-                     min_crossing = TRUE, ...) {
+        mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
+        ladderize = FALSE, right = FALSE, branch.length = "branch.length",
+        ndigits = NULL, min_crossing = TRUE, ...) {
     layout <- match.arg(layout, c("rectangular", "slanted"))
     # , 'fan', 'circular', 'radial', 'unrooted', 'equal_angle', 'daylight'
 
@@ -139,11 +138,12 @@ minimize_overlap <- function(x) {
         best_r <- sum(abs(h[x$reticulation[, 1]] - h[x$reticulation[, 2]]))
         best_c <- -1
         # r_hist[j] <- best_r
-        nodes2rot <- intersect(sort(unique(unlist(Ancestors(x, c(x$reticulation))))),
-                               which(tabulate(x$edge[, 1]) > 1))
+        nodes2rot <- intersect(sort(unique(unlist(Ancestors(x,
+                c(x$reticulation))))), which(tabulate(x$edge[, 1]) > 1))
         for (i in seq_along(nodes2rot)) {
             nh <- node.height(ape::rotate(x, nodes2rot[i]))
-            best_nr <- sum(abs(nh[x$reticulation[, 1]] - nh[x$reticulation[, 2]]))
+            best_nr <- sum(abs(nh[x$reticulation[, 1]] -
+                                nh[x$reticulation[, 2]]))
             if (best_nr < best_r) {
                 best_c <- nodes2rot[i]
                 best_r <- best_nr
@@ -183,7 +183,7 @@ node.depth.evonet <- function(x, ...) {
     pa[x$edge[ind, 2]] <- x$edge[ind, 1]
     for (i in seq_len(nrow(x$reticulation))) {
         pa[[x$reticulation[i, 2]]] <- sort(c(pa[[x$reticulation[i, 2]]],
-                                             x$reticulation[i, 1]))
+                                            x$reticulation[i, 1]))
     }
     ind <- which(lengths(pa) > 0)
     depth <- numeric(max_nodes)

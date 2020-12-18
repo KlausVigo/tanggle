@@ -19,7 +19,7 @@ splitnet layer
 add splitnet layer
 }
 \examples{
-data(yeast, package="phangorn")
+data(yeast, package='phangorn')
 dm <- phangorn::dist.ml(yeast)
 nnet <- phangorn::neighborNet(dm)
 ggplot(nnet, aes(x, y))  + geom_splitnet() + theme_tree()

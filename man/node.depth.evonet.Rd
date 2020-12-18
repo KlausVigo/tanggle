@@ -7,7 +7,7 @@
 node.depth.evonet(x, ...)
 }
 \arguments{
-\item{x}{an object of class "evonet"}
+\item{x}{an object of class 'evonet'}
 
 \item{\dots}{Further arguments passed to or from other methods.}
 }
@@ -18,8 +18,8 @@ a vector with the depth of the nodes
 These functions return the depths or heights of nodes and tips.
 }
 \examples{
-z <- ape::read.evonet(text = "((1,((2,(3,(4)Y#H1)g)e,
-(((Y#H1, 5)h,6)f)X#H2)c)a,((X#H2,7)d,8)b)r;")
+z <- ape::read.evonet(text = '((1,((2,(3,(4)Y#H1)g)e,
+(((Y#H1, 5)h,6)f)X#H2)c)a,((X#H2,7)d,8)b)r;')
 nd <- node.depth.evonet(z)
 z$edge.length <- nd[z$edge[,1]] - nd[z$edge[,2]]
 ggevonet(z)

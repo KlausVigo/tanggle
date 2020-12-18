@@ -4,22 +4,10 @@
 \alias{ggevonet}
 \title{ggevonet}
 \usage{
-ggevonet(
-  tr,
-  mapping = NULL,
-  layout = "slanted",
-  open.angle = 0,
-  mrsd = NULL,
-  as.Date = FALSE,
-  yscale = "none",
-  yscale_mapping = NULL,
-  ladderize = FALSE,
-  right = FALSE,
-  branch.length = "branch.length",
-  ndigits = NULL,
-  min_crossing = TRUE,
-  ...
-)
+ggevonet(tr, mapping = NULL, layout = "slanted", open.angle = 0,
+  mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
+  ladderize = FALSE, right = FALSE, branch.length = "branch.length",
+  ndigits = NULL, min_crossing = TRUE, ...)
 }
 \arguments{
 \item{tr}{phylo object}
@@ -57,7 +45,7 @@ tree
 drawing phylogenetic tree from phylo object
 }
 \examples{
-(enet <- ape::read.evonet(text="((a:2,(b:1)#H1:1):1,(#H1,c:1):2);"))
+(enet <- ape::read.evonet(text='((a:2,(b:1)#H1:1):1,(#H1,c:1):2);'))
 ggevonet(enet) + geom_tiplab()
 }
 \seealso{

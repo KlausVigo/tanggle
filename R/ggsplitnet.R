@@ -16,8 +16,8 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
     }
     isTip[ind] <- TRUE
     df <- data.frame(node = model$edge[, 2], parent = model$edge[, 1],
-                     branch.length = model$edge.length,
-                     split = model$splitIndex, label = label, isTip = isTip)
+                    branch.length = model$edge.length,
+                    split = model$splitIndex, label = label, isTip = isTip)
     if (!is.null(model$.plot)) coord <- model$.plot$vertices
     else coord <- coords(model, dim = "equal_angle")
     df <- cbind(df, x = coord[df$node, 1], y = coord[df$node, 2],
@@ -73,9 +73,9 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #'
 #' @export
 ggsplitnet <- function(tr, mapping = NULL, layout = "slanted", open.angle = 0,
-                       mrsd = NULL, as.Date = FALSE, yscale = "none",
-                       yscale_mapping = NULL, ladderize = FALSE, right = FALSE,
-                       branch.length = "branch.length", ndigits = NULL, ...) {
+        mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
+        ladderize = FALSE, right = FALSE, branch.length = "branch.length",
+        ndigits = NULL, ...) {
     layout <- match.arg(layout, c("slanted"))
     # 'rectangular', 'fan', 'circular', 'radial', 'unrooted', 'equal_angle',
     # 'daylight'
@@ -85,10 +85,9 @@ ggsplitnet <- function(tr, mapping = NULL, layout = "slanted", open.angle = 0,
         mapping <- modifyList(aes_(~x, ~y), mapping)
     }
     p <- ggplot(tr, mapping = mapping, layout = layout, mrsd = mrsd,
-                as.Date = as.Date, yscale = yscale,
-                yscale_mapping = yscale_mapping, ladderize = ladderize,
-                right = right, branch.length = branch.length,
-                ndigits = ndigits, ...)
+            as.Date = as.Date, yscale = yscale, yscale_mapping = yscale_mapping,
+            ladderize = ladderize, right = right, branch.length = branch.length,
+            ndigits = ndigits, ...)
     p <- p + geom_splitnet(layout = layout, ...)
     p <- p + theme_tree()
     class(p) <- c("ggtree", class(p))
@@ -120,12 +119,14 @@ geom_splitnet <- function(layout = "slanted", ...) {
     x <- y <- xend <- yend <- parent <- NULL
     lineend <- "round"
     if (layout == "rectangular" || layout == "fan" || layout == "circular") {
-        list(geom_segment(aes(x = x, xend = xend, y = y, yend = y), lineend = lineend,
-                          ...), geom_segment(aes(x = xend, xend = xend, y = y, yend = yend), lineend = lineend,
-                                             ...))
-    } else if (layout == "slanted" || layout == "radial" || layout == "unrooted") {
-        geom_segment(aes(x = x, xend = xend, y = y, yend = yend), lineend = lineend,
-                     ...)
+        list(geom_segment(aes(x = x, xend = xend, y = y, yend = y),
+            lineend = lineend, ...),
+            geom_segment(aes(x = xend, xend = xend, y = y, yend = yend),
+            lineend = lineend, ...))
+    } else if (layout == "slanted" || layout == "radial" ||
+            layout == "unrooted") {
+        geom_segment(aes(x = x, xend = xend, y = y, yend = yend),
+                    lineend = lineend, ...)
     }
 }
 

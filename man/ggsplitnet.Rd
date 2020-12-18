@@ -4,21 +4,10 @@
 \alias{ggsplitnet}
 \title{ggsplitnet}
 \usage{
-ggsplitnet(
-  tr,
-  mapping = NULL,
-  layout = "slanted",
-  open.angle = 0,
-  mrsd = NULL,
-  as.Date = FALSE,
-  yscale = "none",
-  yscale_mapping = NULL,
-  ladderize = FALSE,
-  right = FALSE,
-  branch.length = "branch.length",
-  ndigits = NULL,
-  ...
-)
+ggsplitnet(tr, mapping = NULL, layout = "slanted", open.angle = 0,
+  mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
+  ladderize = FALSE, right = FALSE, branch.length = "branch.length",
+  ndigits = NULL, ...)
 }
 \arguments{
 \item{tr}{phylo object}
@@ -55,7 +44,7 @@ tree
 drawing phylogenetic tree from phylo object
 }
 \examples{
-data(yeast, package="phangorn")
+data(yeast, package='phangorn')
 dm <- phangorn::dist.ml(yeast)
 nnet <- phangorn::neighborNet(dm)
 ggsplitnet(nnet) + geom_tiplab2()
