@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://klausvigo.github.io/tanggle/index.html</loc>
+  </url>
+  <url>
+    <loc>https://klausvigo.github.io/tanggle/reference/geom_splitnet.html</loc>
+  </url>
+  <url>
+    <loc>https://klausvigo.github.io/tanggle/reference/ggevonet.html</loc>
+  </url>
+  <url>
+    <loc>https://klausvigo.github.io/tanggle/reference/ggsplitnet.html</loc>
+  </url>
+  <url>
+    <loc>https://klausvigo.github.io/tanggle/reference/minimize_overlap.html</loc>
+  </url>
+  <url>
+    <loc>https://klausvigo.github.io/tanggle/reference/node.depth.evonet.html</loc>
+  </url>
+  <url>
+    <loc>https://klausvigo.github.io/tanggle/reference/reexports.html</loc>
+  </url>
+  <url>
+    <loc>https://klausvigo.github.io/tanggle/articles/tanggle_vignette.html</loc>
+  </url>
+  <url>
+    <loc>https://klausvigo.github.io/tanggle/articles/tanggle_vignette_bioc.html</loc>
+  </url>
+</urlset>
