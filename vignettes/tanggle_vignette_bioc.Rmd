@@ -17,8 +17,7 @@ abstract: |
   An R package for visualization of phylogenetic networks in a *ggplot2* 
   framework
 vignette: |
-  %\VignetteIndexEntry{***tanggle***: Visualization of phylogenetic networks in 
-  a *ggplot2* framework (bioc)}
+  %\VignetteIndexEntry{***tanggle***: Visualization of phylogenetic networks in a *ggplot2* framework (bioc)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: tanggle_references.bib  
