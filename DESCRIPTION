@@ -11,7 +11,7 @@ Authors@R: c(person("Klaus", "Schliep", email="klaus.schliep@gmail.com", role = 
              person("Guangchuang", "Yu", role = c("ctb")))
 Description: Plot phylogentic networks from 'ape' and 'phangorn' with a 'ggplot2' like system.
 Depends:
-    R (>= 4.0),
+    R (>= 4.1),
     ggplot2 (>= 2.2.0),
     ggtree
 Imports: 
@@ -27,7 +27,7 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr    
 biocViews: Software, Visualization
-License: AGPL (>= 3)
+License: AGPL-3
 URL: https://klausvigo.github.io/tanggle, https://github.com/KlausVigo/tanggle
 BugReports: https://github.com/KlausVigo/tanggle/issues
 RoxygenNote: 7.1.1

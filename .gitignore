@@ -92,7 +92,6 @@ Backup[ ]of[ ]*.numbers/
 *.eps
 *.jpg
 *.jpeg
-*.png
 *.dot
 *.json
 
