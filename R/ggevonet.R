@@ -117,19 +117,19 @@ ggevonet <- function(tr, mapping = NULL, layout = "slanted", open.angle = 0,
 #' new_tre <- minimize_overlap(fishnet)
 #'
 #' par(mfrow=c(1,2))
-#' ggevonet(fishnet)
+#' ggevonet(fishnet, min_crossing = FALSE)
 #' ggevonet(new_tre)
 #'
 #' net2 <- ape::read.evonet(text='(15,(1,((14,(#H1,(((12,13),(11,#H3)),(7,
 #'     ((10)#H3,(8,9)))))),((((2,3))#H2,(6,(5,(#H2,4)))))#H1)));')
 #' # Cui et al. 2013 Evol.
 #' new_net2 <- minimize_overlap(net2)
-#' ggevonet(net2)
+#' ggevonet(net2, min_crossing = FALSE)
 #' ggevonet(new_net2)
 #'
 #' @export
 minimize_overlap <- function(x) {
-    if (class(x)[1] != "evonet")
+    if (!inherits(x, "evonet"))
         stop("x should be an 'evonet' class")
     n_iter <- round(x$Nnode * 3/4)
     # r_hist <- c()
