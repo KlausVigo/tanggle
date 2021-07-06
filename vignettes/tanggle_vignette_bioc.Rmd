@@ -13,9 +13,6 @@ author:
 package: tanggle
 output:
   BiocStyle::html_document
-abstract: |
-  An R package for visualization of phylogenetic networks in a *ggplot2* 
-  framework
 vignette: |
   %\VignetteIndexEntry{***tanggle***: Visualization of phylogenetic networks in a *ggplot2* framework (bioc)}
   %\VignetteEngine{knitr::rmarkdown}
@@ -37,7 +34,7 @@ suppressPackageStartupMessages({
 ```
 
 \center
-![](../inst/Logo.png){width=50%}
+![](../inst/Logo.png){width=25%}
 \center
 
 
