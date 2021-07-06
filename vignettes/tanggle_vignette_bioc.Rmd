@@ -14,9 +14,11 @@ package: tanggle
 output:
   BiocStyle::html_document
 abstract: |
-  An R package for visualization of phylogenetic networks in a *ggplot2* framework
+  An R package for visualization of phylogenetic networks in a *ggplot2* 
+  framework
 vignette: |
-  %\VignetteIndexEntry{***tanggle***: Visualization of phylogenetic networks in a *ggplot2* framework (bioc)}
+  %\VignetteIndexEntry{***tanggle***: Visualization of phylogenetic networks in 
+  a *ggplot2* framework (bioc)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: tanggle_references.bib  
@@ -57,11 +59,14 @@ in *ape* [@Paradis2018] and *phangorn* [@Schliep2011].
 
 Function name | Brief description |
 :-------- | :--------------------------------------------|
-`geom_splitnet` | Adds a *splitnet* layer to a ggplot, to combine visualising data and the network
+`geom_splitnet` | Adds a *splitnet* layer to a ggplot, to combine visualising 
+data and the network
 `ggsevonet` | Plots an explicit network from a *phylo* object 
 `ggsplitnet` | Plots an implicit network from a *phylo* object 
-`minimize_overlap` | Reduces the number of reticulation lines crossing over in the plot
-`node.depth.evonet` | Returns the depths or heights of nodes and tips in the phylogenetic network
+`minimize_overlap` | Reduces the number of reticulation lines crossing over in 
+the plot
+`node.depth.evonet` | Returns the depths or heights of nodes and tips in the 
+phylogenetic network
 
 
 
@@ -135,12 +140,12 @@ in *phangorn* [@Schliep2011].
     
 * Sequences in nexus, fasta or phylip format, read with the function
 `read.phyDat` in *phangorn* [@Schliep2011] or the function `read.dna` in
-*ape* [@Paradis2018]. Distances matrices are then computed for specific models of
-evolution using the function `dist.ml` in *phangorn* [@Schliep2011] or `dist.dna`
-in *ape* [@Paradis2018]. From the distance matrix, a split network is reconstructed
-using the function `neighborNet` in *phangorn* [@Schliep2011]. ***Optional***: branch
-lengths may be estimated using the function `splitsNetworks` in
-*phangorn* [@Schliep2011].
+*ape* [@Paradis2018]. Distances matrices are then computed for specific models 
+of evolution using the function `dist.ml` in *phangorn* [@Schliep2011] or 
+`dist.dna` in *ape* [@Paradis2018]. From the distance matrix, a split network is
+reconstructed using the function `neighborNet` in *phangorn* [@Schliep2011]. 
+***Optional***: branch lengths may be estimated using the function 
+`splitsNetworks` in *phangorn* [@Schliep2011].
 
 
 
@@ -158,7 +163,9 @@ You can rename tip labels. Here we changed the names to species from 1 to 15:
 Nnet$translate$label <- seq(1:length(Nnet$tip.label))
 ```
 
-We can include the tip labels with `geom_tiplab2`, and customize some of the options. For example, here the tip labels are in blue and both in bold and italics, and we show the internal nodes in green:
+We can include the tip labels with `geom_tiplab2`, and customize some of the 
+options. For example, here the tip labels are in blue and both in bold and 
+italics, and we show the internal nodes in green:
 
 ```{r}
 ggsplitnet(Nnet) + geom_tiplab2(col = "blue", font = 4, hjust = -0.15) + 
@@ -197,9 +204,13 @@ p + geom_nodepoint(color="#b5e521", alpha=1/4, size=10)
 
 # Summary
 
-This vignette illustrates all the functions in the R package ***tanggle***, and provides some examples on how to plot both explicit and implicit networks. The split network plots should take most of the functions compatible with unrooted trees in ggtree. The explicit network plots are phylogram or slanted.
+This vignette illustrates all the functions in the R package ***tanggle***, and 
+provides some examples on how to plot both explicit and implicit networks. The 
+split network plots should take most of the functions compatible with unrooted 
+trees in ggtree. The explicit network plots are phylogram or slanted.
 
 \url{https://bioconductor.org/packages/devel/bioc/vignettes/ggtree/inst/doc/treeVisualization.html}
+
 
 
 
@@ -215,6 +226,7 @@ This vignette illustrates all the functions in the R package ***tanggle***, and 
 ```{r}
 sessionInfo()
 ```
+
 
 
 # References
