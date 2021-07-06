@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   tanggle_vignette: tanggle_vignette.html
   tanggle_vignette_bioc: tanggle_vignette_bioc.html
-last_built: 2021-07-06T10:00Z
+last_built: 2021-07-06T10:15Z
 urls:
   reference: https://klausvigo.github.io/tanggle/reference
   article: https://klausvigo.github.io/tanggle/articles
