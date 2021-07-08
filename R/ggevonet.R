@@ -1,7 +1,3 @@
-#' @importFrom magrittr %>%
-#' @export
-magrittr::"%>%"
-
 #' @method fortify evonet
 #' @importFrom ggplot2 fortify
 #' @export
