@@ -154,6 +154,7 @@ We can plot the network with the default options:
 p <- ggsplitnet(Nnet) + geom_tiplab2()
 p
 ```
+
 When we can set the limits for the x and y axis so that the labels are readable. 
 ```{r}
 p <- p + xlim(-0.019, .003) + ylim(-.01,.012) 
