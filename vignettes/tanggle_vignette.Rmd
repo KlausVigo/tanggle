@@ -1,88 +1,61 @@
 ---
-title: "***tanggle***: an R package for visualization of phylogenetic networks in a *ggplot2* framework"
+title: "***tanggle***: Visualization of phylogenetic networks in a *ggplot2* framework"
+author:
+- name: Klaus Schliep
+  affiliation: Graz University of Technology
+- name:  Marta Vidal-García
+  affiliation: University of Calgary
+- name: Leann Biancani
+  affiliation: University of Maryland College Park & Smithsonian National Museum of Natural History
+- name: Francisco Henao Diaz
+  affiliation: University of British Columbia
+- name: Eren Ada
+  affiliation: University of Rhode Island
+- name: Claudia Solís-Lemus
+  affiliation: University of Wisconsin-Madison
+  email: klaus.schliep@gmail.com
 package: tanggle
-description: an R package for visualization of phylogenetic networks in a *ggplot2* framework
-output: 
-    html_vignette:
-        toc: true
-        toc_depth: 2
-vignette: >
+output:
+  BiocStyle::html_document
+vignette: |
+  %\VignetteIndexEntry{***tanggle***: Visualization of phylogenetic networks in a *ggplot2* framework}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{***tanggle***: an R package for visualization of phylogenetic networks in a *ggplot2* framework}
   %\VignetteEncoding{UTF-8}
-  
-geometry: margin=2.5cm
-header-includes:
-- \usepackage{fancyhdr}
-- \usepackage{lipsum}
-- \pagestyle{fancy}
-- \fancyhead[CO,CE]{This is fancy header}
-- \fancyfoot[CO,CE]{And this is a fancy footer}
-- \fancyfoot[LE,RO]{\thepage}
-- \fancypagestyle{plain}{\pagestyle{fancy}}
-
-bibliography: tanggle_references.bib
-
+bibliography: tanggle_references.bib  
 ---
-<!--- Define Headers and Footers --->
-\fancypagestyle{plain}{%
-  \renewcommand{\headrulewidth}{0pt}%
-  \fancyhf{}%
-  \fancyfoot[C]{\footnotesize Page \thepage\, of\, \pageref*{LastPage}}
-  \setlength\footskip{0pt}
-}
 
-\pagestyle{plain}
-
-```{r style, echo = FALSE, results = 'asis'}
-  BiocStyle::markdown()
-```
-  
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+    collapse = TRUE,
+    comment = "#>"
 )
 suppressPackageStartupMessages({
-    library(tanggle)
-    library(phangorn)
-    library(ggtree)
+    library(tanggle, quietly=TRUE)
+    library(phangorn, quietly=TRUE)
+    library(ggtree, quietly=TRUE)
 })
 ```
 
 \center
-![](../inst/Logo.png){width=70%}
+![](../inst/Logo.png){width=25%}
 \center
 
-Klaus Schliep^[klaus.schliep@gmail.com], Marta Vidal-García^[marta.vidalga@gmail.com], Leann Biancani,
-Francisco Henao Diaz, Eren Ada, and Claudia Solís-Lemus^[solislemus@wisc.edu]
 
-<br><br><br><br><br><br>
+# Introduction
 
-Last updated on `r Sys.Date()`.
-
-\maketitle
-
-\newpage
-
-\tableofcontents
-
-\newpage
-
-\section{Introduction}
-## 1. Introduction
-
-Here we present a vignette for the R package ***tanggle***, and provide an overview of its functions and their usage. ***Tanggle*** extends the *ggtree* R package [@Yu2017]  to allow
-for the visualization of several types of phylogenetic networks using the
-*ggplot2* [@Wickham2016] syntax. More specifically,
-*tanggle* contains functions to allow the user to effectively plot: (1) split (i.e. implicit) networks
-(unrooted, undirected) and (2) explicit networks (rooted, directed) with
-reticulations. It offers an alternative to the plot functions already available
+Here we present a vignette for the R package ***tanggle***, and provide an 
+overview of its functions and their usage. ***Tanggle*** extends the *ggtree* 
+R package [@Yu2017] to allow for the visualization of several types of 
+phylogenetic networks using the *ggplot2* [@Wickham2016] syntax. More 
+specifically, *tanggle* contains functions to allow the user to effectively 
+plot: (1) split (i.e. implicit) networks (unrooted, undirected) and 
+(2) explicit networks (rooted, directed) with reticulations. 
+It offers an alternative to the plot functions already available
 in *ape* [@Paradis2018] and *phangorn* [@Schliep2011].
 
 
-## 2.  List of functions
+# List of functions
 
 Function name | Brief description |
 :-------- | :--------------------------------------------|
@@ -93,14 +66,15 @@ Function name | Brief description |
 `node.depth.evonet` | Returns the depths or heights of nodes and tips in the phylogenetic network
 
 
-\section{Getting Started}
-## 3. Getting started
+
+# Getting started
 
 Load the necessary libraries:
 
 ```{r, echo=TRUE, results='hide', eval=FALSE}
 packages_needed <- c("ggplot2", "ggtree", "phangorn")
-packages_to_install <- packages_needed[!(packages_needed %in% installed.packages()[,"Package"])]
+packages_to_install <- packages_needed[!(packages_needed %in% 
+                              installed.packages()[,"Package"])]
 if(length(packages_to_install)) install.packages(packages_to_install)
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -129,8 +103,8 @@ library(ggtree)
 
 ***
 
-\section{Split Networks}
-## 4. Split Networks
+
+# Split Networks
 
 Split networks are data-display objects which allow for the definition of 2 (or
 more) options for non-compatible splits. Split networks are most often used to
@@ -139,8 +113,7 @@ visualize consensus networks [@Holland2004] or neighbor-nets
 `neighbor-net` functions in *phangorn* [@Schliep2011] or by importing
 nexus files from SplitsTree [@Huson2006].
 
-\subsection{Data Types}
-### 4.1. Data Types
+## Data Types
 
 *tanggle* accepts three forms of input data for split networks. The
 following input options all generate a *networx* object for plotting.
@@ -163,22 +136,28 @@ A consensus split network is then computed using the function `consensusNet`
 in *phangorn* [@Schliep2011].
     
 * Sequences in nexus, fasta or phylip format, read with the function
-    `read.phyDat` in *phangorn* [@Schliep2011] or the function `read.dna` in
-    *ape* [@Paradis2018]. Distances matrices are then computed for specific models of
-    evolution using the function `dist.ml` in *phangorn* [@Schliep2011] or `dist.dna`
-    in *ape* [@Paradis2018]. From the distance matrix, a split network is reconstructed
-    using the function `neighborNet` in *phangorn* [@Schliep2011]. ***Optional***: branch
-    lengths may be estimated using the function `splitsNetworks` in
-    *phangorn* [@Schliep2011].
+`read.phyDat` in *phangorn* [@Schliep2011] or the function `read.dna` in
+*ape* [@Paradis2018]. Distances matrices are then computed for specific models 
+of evolution using the function `dist.ml` in *phangorn* [@Schliep2011] or 
+`dist.dna` in *ape* [@Paradis2018]. From the distance matrix, a split network is
+reconstructed using the function `neighborNet` in *phangorn* [@Schliep2011]. 
+***Optional***: branch lengths may be estimated using the function 
+`splitsNetworks` in *phangorn* [@Schliep2011].
 
 
-\subsection{Plotting a Split Network}
 
-### 4.2. Plotting a Split Network:
+
+## Plotting a Split Network:
 
 We can plot the network with the default options:
 ```{r}
-ggsplitnet(Nnet) + geom_tiplab2()
+p <- ggsplitnet(Nnet) + geom_tiplab2()
+p
+```
+When we can set the limits for the x and y axis so that the labels are readable. 
+```{r}
+p <- p + xlim(-0.019, .003) + ylim(-.01,.012) 
+p
 ```
 
 You can rename tip labels. Here we changed the names to species from 1 to 15:
@@ -187,7 +166,9 @@ You can rename tip labels. Here we changed the names to species from 1 to 15:
 Nnet$translate$label <- seq(1:length(Nnet$tip.label))
 ```
 
-We can include the tip labels with `geom_tiplab2`, and customize some of the options. For example, here the tip labels are in blue and both in bold and italics, and we show the internal nodes in green:
+We can include the tip labels with `geom_tiplab2`, and customize some of the 
+options. For example, here the tip labels are in blue and both in bold and 
+italics, and we show the internal nodes in green:
 
 ```{r}
 ggsplitnet(Nnet) + geom_tiplab2(col = "blue", font = 4, hjust = -0.15) + 
@@ -201,8 +182,8 @@ ggsplitnet(Nnet) + geom_point(aes(shape=isTip, color=isTip), size=2)
 ```
 
 
-\section{Plotting Explicit Networks}
-### 4.3. Plotting Explicit Networks
+
+## Plotting Explicit Networks
 
 The function `ggevonet` plots explicit networks (phylogenetic trees
 with reticulations). A recent addition to *ape* [@Paradis2018] made
@@ -216,22 +197,22 @@ z <- read.evonet(text = "((1,((2,(3,(4)Y#H1)g)e,(((Y#H1,5)h,6)f)X#H2)c)a,
 
 Plot an explicit network:
 ```{r}
-ggevonet(z) + geom_tiplab() + geom_nodelab()
+ggevonet(z, layout = "rectangular") + geom_tiplab() + geom_nodelab()
 p <- ggevonet(z, layout = "slanted") + geom_tiplab() + geom_nodelab()
 p + geom_tiplab(size=3, color="purple")
 p + geom_nodepoint(color="#b5e521", alpha=1/4, size=10)
-
 ```
 
-\section{Summary}
-## 5. Summary
+
+# Summary
 
 This vignette illustrates all the functions in the R package ***tanggle***, and 
 provides some examples on how to plot both explicit and implicit networks. The 
 split network plots should take most of the functions compatible with unrooted 
-trees in ggtree. The explicit network plots are phylogram or slanted.
+trees in ggtree. The layout options for explicit network plots are *rectangular* or *slanted*.
 
 \url{https://bioconductor.org/packages/devel/bioc/vignettes/ggtree/inst/doc/treeVisualization.html}
+
 
 
 
@@ -243,13 +224,13 @@ trees in ggtree. The explicit network plots are phylogram or slanted.
 
 \newpage
 \appendix
-\section{Session info}
-## 6. Session info
+# Session info {.unnumbered}
 ```{r}
 sessionInfo()
 ```
 
-\bibliography{tanggle}
-## 7. References
 
+
+# References
+\bibliography{tanggle}
 
