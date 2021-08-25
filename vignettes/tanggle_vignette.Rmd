@@ -216,10 +216,6 @@ trees in ggtree. The layout options for explicit network plots are *rectangular*
 
 
 
-
-\nocite{Schliep2017}
-
-
 \newpage
 
 

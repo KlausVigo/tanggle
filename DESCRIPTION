@@ -32,8 +32,8 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr    
-biocViews: Software, Visualization
-License: AGPL-3
+biocViews: Software, Visualization, Phylogenetics
+License: Artistic-2.0
 URL: https://klausvigo.github.io/tanggle, https://github.com/KlausVigo/tanggle
 BugReports: https://github.com/KlausVigo/tanggle/issues
 RoxygenNote: 7.1.1
