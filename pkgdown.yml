@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   tanggle_vignette: tanggle_vignette.html
-last_built: 2021-08-25T16:00Z
+last_built: 2021-09-02T13:50Z
 urls:
   reference: https://klausvigo.github.io/tanggle/reference
   article: https://klausvigo.github.io/tanggle/articles
