@@ -1,7 +1,7 @@
 Package: tanggle
 Type: Package
 Title: Visualization of Phylogenetic Networks
-Version: 0.99.0
+Version: 0.99.1
 Authors@R: c(person("Klaus", "Schliep", email="klaus.schliep@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2941-0161")),
              person("Marta", "Vidal-Garcia", role="aut"), 
              person("Claudia", "Solis-Lemus", role="aut", email="solislemus@wisc.edu", comment = c(ORCID = "0000-0002-9789-8915")), 
