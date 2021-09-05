@@ -4,7 +4,6 @@
 fortify.evonet <- function(model, data, layout = "rectangular",
         ladderize = FALSE, right = FALSE, mrsd = NULL, as.Date = FALSE, ...) {
     class(model) <- "phylo"
-    # ggtree:::fortify.phylo
     df <- fortify(model, ladderize = ladderize)
 
     hybridEdge <- logical(nrow(df))
@@ -13,7 +12,6 @@ fortify.evonet <- function(model, data, layout = "rectangular",
 
     reticulation <- model$reticulation
     df.ret <- df[reticulation[, 1], , drop = FALSE]
-    # df.ret <- df[reticulation[,2], , drop=FALSE]
     df.ret[, c("node", "parent")] <- reticulation
     df.ret[, "hybridEdge"] <- TRUE
     df <- rbind(df, df.ret)
@@ -66,10 +64,9 @@ ggevonet <- function(tr, mapping = NULL, layout = "slanted", open.angle = 0,
         ladderize = FALSE, right = FALSE, branch.length = "branch.length",
         ndigits = NULL, min_crossing = TRUE, ...) {
     layout <- match.arg(layout, c("rectangular", "slanted"))
-    # , 'fan', 'circular', 'radial', 'unrooted', 'equal_angle', 'daylight'
 
     if (is.null(tr$edge.length)) {
-        nh <- node.depth.evonet(tr)
+        nh <- node_depth_evonet(tr)
         tr$edge.length <- nh[tr$edge[, 1]] - nh[tr$edge[, 2]]
     }
     if (min_crossing) {
@@ -128,12 +125,10 @@ minimize_overlap <- function(x) {
     if (!inherits(x, "evonet"))
         stop("x should be an 'evonet' class")
     n_iter <- round(x$Nnode * 3/4)
-    # r_hist <- c()
     for (j in seq_len(n_iter)) {
         h <- node.height(x)
         best_r <- sum(abs(h[x$reticulation[, 1]] - h[x$reticulation[, 2]]))
         best_c <- -1
-        # r_hist[j] <- best_r
         nodes2rot <- intersect(sort(unique(unlist(Ancestors(x,
                 c(x$reticulation))))), which(tabulate(x$edge[, 1]) > 1))
         for (i in seq_along(nodes2rot)) {
@@ -161,13 +156,13 @@ minimize_overlap <- function(x) {
 #' @examples
 #' z <- ape::read.evonet(text = '((1,((2,(3,(4)Y#H1)g)e,
 #' (((Y#H1, 5)h,6)f)X#H2)c)a,((X#H2,7)d,8)b)r;')
-#' nd <- node.depth.evonet(z)
+#' nd <- node_depth_evonet(z)
 #' z$edge.length <- nd[z$edge[,1]] - nd[z$edge[,2]]
 #' ggevonet(z)
 #'
 #' @importFrom phangorn getRoot Ancestors Descendants
 #' @export
-node.depth.evonet <- function(x, ...) {
+node_depth_evonet <- function(x, ...) {
     x <- ape::reorder.phylo(x)
     root <- getRoot(x)
     max_nodes <- max(x$edge)
@@ -191,7 +186,7 @@ node.depth.evonet <- function(x, ...) {
     d <- 1
     while (length(candidates) > 0) {
         active <- vapply(candidates, function(x) all(done[pa[[x]]]), FALSE)
-        tmp <- which(active)[1]  #sample(active,1)
+        tmp <- which(active)[1]
         candidates <- c(candidates, desc[[candidates[tmp]]])
         candidates <- candidates[candidates > nTip]
         d <- d + 1
@@ -203,4 +198,3 @@ node.depth.evonet <- function(x, ...) {
     depth[seq_len(nTip)] <- 1
     depth
 }
-
