@@ -69,16 +69,12 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #' dm <- phangorn::dist.ml(yeast)
 #' nnet <- phangorn::neighborNet(dm)
 #' ggsplitnet(nnet) + geom_tiplab2()
-#'
-#'
 #' @export
 ggsplitnet <- function(tr, mapping = NULL, layout = "slanted", open.angle = 0,
         mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
         ladderize = FALSE, right = FALSE, branch.length = "branch.length",
         ndigits = NULL, ...) {
     layout <- match.arg(layout, c("slanted"))
-    # 'rectangular', 'fan', 'circular', 'radial', 'unrooted', 'equal_angle',
-    # 'daylight'
     if (is.null(mapping)) {
         mapping <- aes_(~x, ~y)
     } else {
@@ -129,4 +125,3 @@ geom_splitnet <- function(layout = "slanted", ...) {
                     lineend = lineend, ...)
     }
 }
-

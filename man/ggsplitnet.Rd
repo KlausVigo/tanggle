@@ -48,8 +48,6 @@ data(yeast, package='phangorn')
 dm <- phangorn::dist.ml(yeast)
 nnet <- phangorn::neighborNet(dm)
 ggsplitnet(nnet) + geom_tiplab2()
-
-
 }
 \references{
 Schliep, K., Potts, A. J., Morrison, D. A. and Grimm, G. W.
