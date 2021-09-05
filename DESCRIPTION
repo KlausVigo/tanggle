@@ -1,22 +1,24 @@
 Package: tanggle
 Type: Package
 Title: Visualization of Phylogenetic Networks
-Version: 0.99.1
-Authors@R: c(person("Klaus", "Schliep", email="klaus.schliep@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2941-0161")),
+Version: 0.99.2
+Authors@R: c(person("Klaus", "Schliep", email="klaus.schliep@gmail.com", 
+    role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2941-0161")),
              person("Marta", "Vidal-Garcia", role="aut"), 
-             person("Claudia", "Solis-Lemus", role="aut", email="solislemus@wisc.edu", comment = c(ORCID = "0000-0002-9789-8915")), 
+             person("Claudia", "Solis-Lemus", role="aut", 
+    email="solislemus@wisc.edu", comment = c(ORCID = "0000-0002-9789-8915")), 
              person("Leann", "Biancani", role="aut"), 
              person("Eren", "Ada", role="aut"), 
              person("L. Francisco", "Henao Diaz", role="aut"), 
              person("Guangchuang", "Yu", role = c("ctb")))
-Description: Offers functions for plotting split  (or implicit) networks (unrooted, undirected) 
-    and explicit networks (rooted, directed) with reticulations extending.  
-    'ggtree' and using functions from 'ape' and 'phangorn'. It extends the 
-    'ggtree' package [@Yu2017]  to allow the visualization of phylogenetic 
-    networks using the 'ggplot2' syntax. It offers an alternative to the plot 
-    functions already available in 'ape' Paradis and Schliep (2019) 
-    <doi:10.1093/bioinformatics/bty633> and 'phangorn' Schliep (2011) 
-    <doi:10.1093/bioinformatics/btq706>.
+Description: Offers functions for plotting split  (or implicit) networks 
+    (unrooted, undirected) and explicit networks (rooted, directed) with 
+    reticulations extending. 'ggtree' and using functions from 'ape' and 
+    'phangorn'. It extends the 'ggtree' package [@Yu2017] to allow the 
+    visualization of phylogenetic networks using the 'ggplot2' syntax. It offers
+    an alternative to the plot functions already available in 'ape' Paradis and
+    Schliep (2019) <doi:10.1093/bioinformatics/bty633> and 'phangorn' Schliep 
+    (2011) <doi:10.1093/bioinformatics/btq706>.
 Depends:
     R (>= 4.1),
     ggplot2 (>= 2.2.0),
@@ -32,7 +34,8 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr    
-biocViews: Software, Visualization, Phylogenetics
+biocViews: Software, Visualization, Phylogenetics, Alignment, Clustering, 
+    MultipleSequenceAlignment, DataImport
 License: Artistic-2.0
 URL: https://klausvigo.github.io/tanggle, https://github.com/KlausVigo/tanggle
 BugReports: https://github.com/KlausVigo/tanggle/issues
