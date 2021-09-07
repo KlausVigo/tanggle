@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/KlausVigo/tanggle/branch/master/graph/badge.svg)](https://codecov.io/gh/KlausVigo/tanggle)
 [![Coverage Status](https://coveralls.io/repos/github/KlausVigo/tanggle/badge.svg?branch=master)](https://coveralls.io/github/KlausVigo/tanggle?branch=master)
 
-# tanggle <a href='https://klausvigo.github.io/tanggle'><img src='man/figures/logo.png' align="right" height="110" /></a>
+# tanggle <a href='https://klausvigo.github.io/tanggle'><img src='inst/extdata/logo.png' align="right" height="110" /></a>
 
 
 tanggle provides function to plot phylogenetic networks of class `evonet` from *ape* and split graphs of class `networx` from *phangorn*.
@@ -38,4 +38,4 @@ and also
 Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution 2017, 8(1):28-36
 
 
-<img src="man/figures/spider.png" align="left" width="120" />
+<img src="inst/extdata/spider.png" align="left" width="120" />

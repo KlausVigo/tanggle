@@ -6,8 +6,6 @@
 \alias{tanggle-package}
 \title{tanggle: Visualization of Phylogenetic Networks}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
-
 Offers functions for plotting split  (or implicit) networks 
     (unrooted, undirected) and explicit networks (rooted, directed) with 
     reticulations extending. 'ggtree' and using functions from 'ape' and 

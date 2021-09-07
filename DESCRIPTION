@@ -26,7 +26,8 @@ Depends:
 Imports:
     ape (>= 5.0), 
     phangorn (>= 2.5),
-    utils
+    utils,
+    methods
 Suggests:
     tinytest,
     BiocStyle,
