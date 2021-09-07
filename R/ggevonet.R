@@ -23,10 +23,9 @@ fortify.evonet <- function(model, data, layout = "rectangular",
 #'
 #'
 #' @title ggevonet
-#' @param tr phylo object
+#' @param tr a evonet object
 #' @param mapping aes mapping
 #' @param layout one of 'rectangular', 'slanted'
-#' @param open.angle open angle, only for 'fan' layout
 #' @param mrsd most recent sampling date
 #' @param as.Date logical whether using Date class in time tree
 #' @param yscale y scale
@@ -59,12 +58,12 @@ fortify.evonet <- function(model, data, layout = "rectangular",
 #' (enet <- ape::read.evonet(text='((a:2,(b:1)#H1:1):1,(#H1,c:1):2);'))
 #' ggevonet(enet) + geom_tiplab()
 #' @export
-ggevonet <- function(tr, mapping = NULL, layout = "slanted", open.angle = 0,
+ggevonet <- function(tr, mapping = NULL, layout = "slanted",
         mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
         ladderize = FALSE, right = FALSE, branch.length = "branch.length",
         ndigits = NULL, min_crossing = TRUE, ...) {
     layout <- match.arg(layout, c("rectangular", "slanted"))
-
+    if(!is(tr, "evonet")) stop("tr must be of class 'evonet'")
     if (is.null(tr$edge.length)) {
         nh <- node_depth_evonet(tr)
         tr$edge.length <- nh[tr$edge[, 1]] - nh[tr$edge[, 2]]

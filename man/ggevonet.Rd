@@ -4,19 +4,17 @@
 \alias{ggevonet}
 \title{ggevonet}
 \usage{
-ggevonet(tr, mapping = NULL, layout = "slanted", open.angle = 0,
-  mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
+ggevonet(tr, mapping = NULL, layout = "slanted", mrsd = NULL,
+  as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
   ladderize = FALSE, right = FALSE, branch.length = "branch.length",
   ndigits = NULL, min_crossing = TRUE, ...)
 }
 \arguments{
-\item{tr}{phylo object}
+\item{tr}{a evonet object}
 
 \item{mapping}{aes mapping}
 
 \item{layout}{one of 'rectangular', 'slanted'}
-
-\item{open.angle}{open angle, only for 'fan' layout}
 
 \item{mrsd}{most recent sampling date}
 

@@ -33,11 +33,9 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #'
 #'
 #' @title ggsplitnet
-#' @param tr phylo object
+#' @param tr a networx object
 #' @param mapping aes mapping
-#' @param layout one of 'rectangular', 'slanted', 'fan', 'circular', 'radial',
-#' 'equal_angle' or 'daylight'
-#' @param open.angle open angle, only for 'fan' layout
+#' @param layout so far only 'slanted' is supported.
 #' @param mrsd most recent sampling date
 #' @param as.Date logical whether using Date class in time tree
 #' @param yscale y scale
@@ -63,6 +61,7 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #' @importFrom ggplot2 coord_flip
 #' @importFrom ggplot2 coord_polar
 #' @importFrom ggtree theme_tree
+#' @importFrom methods is
 #' @author Klaus Schliep
 #' @examples
 #' data(yeast, package='phangorn')
@@ -70,10 +69,11 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #' nnet <- phangorn::neighborNet(dm)
 #' ggsplitnet(nnet) + geom_tiplab2()
 #' @export
-ggsplitnet <- function(tr, mapping = NULL, layout = "slanted", open.angle = 0,
+ggsplitnet <- function(tr, mapping = NULL, layout = "slanted",
         mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
         ladderize = FALSE, right = FALSE, branch.length = "branch.length",
         ndigits = NULL, ...) {
+    if(!is(tr, "networx")) stop("tr must be of class 'networx'")
     layout <- match.arg(layout, c("slanted"))
     if (is.null(mapping)) {
         mapping <- aes_(~x, ~y)

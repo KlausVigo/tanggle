@@ -4,20 +4,17 @@
 \alias{ggsplitnet}
 \title{ggsplitnet}
 \usage{
-ggsplitnet(tr, mapping = NULL, layout = "slanted", open.angle = 0,
-  mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
+ggsplitnet(tr, mapping = NULL, layout = "slanted", mrsd = NULL,
+  as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
   ladderize = FALSE, right = FALSE, branch.length = "branch.length",
   ndigits = NULL, ...)
 }
 \arguments{
-\item{tr}{phylo object}
+\item{tr}{a networx object}
 
 \item{mapping}{aes mapping}
 
-\item{layout}{one of 'rectangular', 'slanted', 'fan', 'circular', 'radial',
-'equal_angle' or 'daylight'}
-
-\item{open.angle}{open angle, only for 'fan' layout}
+\item{layout}{so far only 'slanted' is supported.}
 
 \item{mrsd}{most recent sampling date}
 
