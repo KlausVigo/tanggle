@@ -8,13 +8,6 @@
 
 <title>ggevonet — ggevonet • tanggle</title>
 
-<!-- favicons -->
-<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -48,7 +41,6 @@
 
 <meta property="og:title" content="ggevonet — ggevonet" />
 <meta property="og:description" content="drawing phylogenetic tree from phylo object" />
-<meta property="og:image" content="https://klausvigo.github.io/tanggle/logo.png" />
 
 
 
@@ -80,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tanggle</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.2</span>
       </span>
     </div>
 
@@ -137,8 +129,8 @@
     <p>drawing phylogenetic tree from phylo object</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ggevonet</span><span class='op'>(</span><span class='va'>tr</span>, mapping <span class='op'>=</span> <span class='cn'>NULL</span>, layout <span class='op'>=</span> <span class='st'>"slanted"</span>, open.angle <span class='op'>=</span> <span class='fl'>0</span>,
-  mrsd <span class='op'>=</span> <span class='cn'>NULL</span>, as.Date <span class='op'>=</span> <span class='cn'>FALSE</span>, yscale <span class='op'>=</span> <span class='st'>"none"</span>, yscale_mapping <span class='op'>=</span> <span class='cn'>NULL</span>,
+    <pre class="usage"><span class='fu'>ggevonet</span><span class='op'>(</span><span class='va'>tr</span>, mapping <span class='op'>=</span> <span class='cn'>NULL</span>, layout <span class='op'>=</span> <span class='st'>"slanted"</span>, mrsd <span class='op'>=</span> <span class='cn'>NULL</span>,
+  as.Date <span class='op'>=</span> <span class='cn'>FALSE</span>, yscale <span class='op'>=</span> <span class='st'>"none"</span>, yscale_mapping <span class='op'>=</span> <span class='cn'>NULL</span>,
   ladderize <span class='op'>=</span> <span class='cn'>FALSE</span>, right <span class='op'>=</span> <span class='cn'>FALSE</span>, branch.length <span class='op'>=</span> <span class='st'>"branch.length"</span>,
   ndigits <span class='op'>=</span> <span class='cn'>NULL</span>, min_crossing <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
@@ -147,7 +139,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tr</th>
-      <td><p>phylo object</p></td>
+      <td><p>a evonet object</p></td>
     </tr>
     <tr>
       <th>mapping</th>
@@ -156,10 +148,6 @@
     <tr>
       <th>layout</th>
       <td><p>one of 'rectangular', 'slanted'</p></td>
-    </tr>
-    <tr>
-      <th>open.angle</th>
-      <td><p>open angle, only for 'fan' layout</p></td>
     </tr>
     <tr>
       <th>mrsd</th>

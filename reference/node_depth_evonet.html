@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ggsplitnet — ggsplitnet • tanggle</title>
+<title>Depth of Nodes — node_depth_evonet • tanggle</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="ggsplitnet — ggsplitnet" />
-<meta property="og:description" content="drawing phylogenetic tree from phylo object" />
+<meta property="og:title" content="Depth of Nodes — node_depth_evonet" />
+<meta property="og:description" content="These functions return the depths or heights of nodes and tips." />
 
 
 
@@ -120,95 +120,45 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>ggsplitnet</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KlausVigo/tanggle/blob/master/R/ggsplitnet.R'><code>R/ggsplitnet.R</code></a></small>
-    <div class="hidden name"><code>ggsplitnet.Rd</code></div>
+    <h1>Depth of Nodes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KlausVigo/tanggle/blob/master/R/ggevonet.R'><code>R/ggevonet.R</code></a></small>
+    <div class="hidden name"><code>node_depth_evonet.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>drawing phylogenetic tree from phylo object</p>
+    <p>These functions return the depths or heights of nodes and tips.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ggsplitnet</span><span class='op'>(</span><span class='va'>tr</span>, mapping <span class='op'>=</span> <span class='cn'>NULL</span>, layout <span class='op'>=</span> <span class='st'>"slanted"</span>, mrsd <span class='op'>=</span> <span class='cn'>NULL</span>,
-  as.Date <span class='op'>=</span> <span class='cn'>FALSE</span>, yscale <span class='op'>=</span> <span class='st'>"none"</span>, yscale_mapping <span class='op'>=</span> <span class='cn'>NULL</span>,
-  ladderize <span class='op'>=</span> <span class='cn'>FALSE</span>, right <span class='op'>=</span> <span class='cn'>FALSE</span>, branch.length <span class='op'>=</span> <span class='st'>"branch.length"</span>,
-  ndigits <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>node_depth_evonet</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>tr</th>
-      <td><p>a networx object</p></td>
-    </tr>
-    <tr>
-      <th>mapping</th>
-      <td><p>aes mapping</p></td>
-    </tr>
-    <tr>
-      <th>layout</th>
-      <td><p>so far only 'slanted' is supported.</p></td>
-    </tr>
-    <tr>
-      <th>mrsd</th>
-      <td><p>most recent sampling date</p></td>
-    </tr>
-    <tr>
-      <th>as.Date</th>
-      <td><p>logical whether using Date class in time tree</p></td>
-    </tr>
-    <tr>
-      <th>yscale</th>
-      <td><p>y scale</p></td>
-    </tr>
-    <tr>
-      <th>yscale_mapping</th>
-      <td><p>yscale mapping for category variable</p></td>
-    </tr>
-    <tr>
-      <th>ladderize</th>
-      <td><p>logical</p></td>
-    </tr>
-    <tr>
-      <th>right</th>
-      <td><p>logical</p></td>
-    </tr>
-    <tr>
-      <th>branch.length</th>
-      <td><p>variable for scaling branch, if 'none' draw cladogram</p></td>
-    </tr>
-    <tr>
-      <th>ndigits</th>
-      <td><p>number of digits to round numerical annotation variable</p></td>
+      <th>x</th>
+      <td><p>an object of class 'evonet'</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional parameter</p></td>
+      <td><p>Further arguments passed to or from other methods.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>tree</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Schliep, K., Potts, A. J., Morrison, D. A. and Grimm, G. W.
-(2017), Intertwining phylogenetic trees and networks.
-<em>Methods Ecol Evol</em>. <b>8</b>, 1212--1220. doi:10.1111/2041-210X.12760</p>
+    <p>a vector with the depth of the nodes</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/ggtree/man/ggtree.html'>ggtree</a></code>, <code><a href='https://rdrr.io/pkg/phangorn/man/as.networx.html'>networx</a></code>,
-<code><a href='https://rdrr.io/pkg/phangorn/man/consensusNet.html'>consensusNet</a></code>, <code><a href='https://rdrr.io/pkg/phangorn/man/neighborNet.html'>neighborNet</a></code></p></div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>Klaus Schliep</p>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/ape/man/node.depth.html'>node.depth</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>yeast</span>, package<span class='op'>=</span><span class='st'>'phangorn'</span><span class='op'>)</span>
-<span class='va'>dm</span> <span class='op'>&lt;-</span> <span class='fu'>phangorn</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/phangorn/man/dist.hamming.html'>dist.ml</a></span><span class='op'>(</span><span class='va'>yeast</span><span class='op'>)</span>
-<span class='va'>nnet</span> <span class='op'>&lt;-</span> <span class='fu'>phangorn</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/phangorn/man/neighborNet.html'>neighborNet</a></span><span class='op'>(</span><span class='va'>dm</span><span class='op'>)</span>
-<span class='fu'>ggsplitnet</span><span class='op'>(</span><span class='va'>nnet</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>geom_tiplab2</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='ggsplitnet-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='va'>z</span> <span class='op'>&lt;-</span> <span class='fu'>ape</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ape/man/evonet.html'>read.evonet</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>'((1,((2,(3,(4)Y#H1)g)e,
+(((Y#H1, 5)h,6)f)X#H2)c)a,((X#H2,7)d,8)b)r;'</span><span class='op'>)</span>
+<span class='va'>nd</span> <span class='op'>&lt;-</span> <span class='fu'>node_depth_evonet</span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span>
+<span class='va'>z</span><span class='op'>$</span><span class='va'>edge.length</span> <span class='op'>&lt;-</span> <span class='va'>nd</span><span class='op'>[</span><span class='va'>z</span><span class='op'>$</span><span class='va'>edge</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>-</span> <span class='va'>nd</span><span class='op'>[</span><span class='va'>z</span><span class='op'>$</span><span class='va'>edge</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>
+<span class='fu'><a href='ggevonet.html'>ggevonet</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span>
+</div><div class='img'><img src='node_depth_evonet-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
