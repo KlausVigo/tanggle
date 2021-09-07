@@ -6,7 +6,7 @@ author:
 - name:  Marta Vidal-García
   affiliation: University of Calgary
 - name: Leann Biancani
-  affiliation: University of Maryland College Park & Smithsonian National Museum of Natural History
+  affiliation: University of Rhode Island
 - name: Francisco Henao Diaz
   affiliation: University of British Columbia
 - name: Eren Ada
@@ -38,7 +38,7 @@ suppressPackageStartupMessages({
 ```
 
 \center
-![](../inst/Logo.png){width=25%}
+![](../inst/extdata/logo.png){width=25%}
 \center
 
 
@@ -60,42 +60,42 @@ in *ape* [@Paradis2018] and *phangorn* [@Schliep2011].
 Function name | Brief description |
 :-------- | :--------------------------------------------|
 `geom_splitnet` | Adds a *splitnet* layer to a ggplot, to combine visualising data and the network
-`ggsevonet` | Plots an explicit network from a *phylo* object 
+`ggevonet` | Plots an explicit network from a *phylo* object 
 `ggsplitnet` | Plots an implicit network from a *phylo* object 
 `minimize_overlap` | Reduces the number of reticulation lines crossing over in the plot
-`node.depth.evonet` | Returns the depths or heights of nodes and tips in the phylogenetic network
+`node_depth_evonet` | Returns the depths or heights of nodes and tips in the phylogenetic network
 
 
 
 # Getting started
 
-Load the necessary libraries:
 
-```{r, echo=TRUE, results='hide', eval=FALSE}
-packages_needed <- c("ggplot2", "ggtree", "phangorn")
-packages_to_install <- packages_needed[!(packages_needed %in% 
-                              installed.packages()[,"Package"])]
-if(length(packages_to_install)) install.packages(packages_to_install)
+Install the package from Bioconductor directly:
 
+```{r install-bioc, eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install("ggtree")
+
+BiocManager::install("tanggle")
+```
+
+Or install the development version of the package from
+[Github](https://github.com/KlausVigo/tanggle).
+
+```{r install-gh, eval=FALSE}
+if (!requireNamespace("remotes", quietly=TRUE))
+  install.packages("remotes")
+remotes::install_github("KlausVigo/tanggle")
 ```
 
 If you need to install *ggtree* from github:
-```{r, eval=FALSE}
-library(remotes)
-install_github("YuLab-SMU/ggtree")
+```{r install-ggtree, eval=FALSE}
+remotes::install_github("YuLab-SMU/ggtree")
 ```
 
-Install *tanggle* from the github repository:
-```{r, eval=FALSE}
-library(remotes)
-install_github("KlausVigo/tanggle")
-```
 
 And load all the libraries:
-```{r, echo=TRUE, results='hide'}
+```{r load-pkg, echo=TRUE, results='hide'}
 library(tanggle)
 library(phangorn)
 library(ggtree)
@@ -155,7 +155,7 @@ p <- ggsplitnet(Nnet) + geom_tiplab2()
 p
 ```
 
-When we can set the limits for the x and y axis so that the labels are readable. 
+When we can set the limits for the x and y axis so that the labels are readable.
 ```{r}
 p <- p + xlim(-0.019, .003) + ylim(-.01,.012) 
 p
@@ -164,7 +164,7 @@ p
 You can rename tip labels. Here we changed the names to species from 1 to 15:
 
 ```{r}
-Nnet$translate$label <- seq(1:length(Nnet$tip.label))
+Nnet$translate$label <- seq_along(Nnet$tip.label)
 ```
 
 We can include the tip labels with `geom_tiplab2`, and customize some of the 
@@ -210,10 +210,8 @@ p + geom_nodepoint(color="#b5e521", alpha=1/4, size=10)
 This vignette illustrates all the functions in the R package ***tanggle***, and 
 provides some examples on how to plot both explicit and implicit networks. The 
 split network plots should take most of the functions compatible with unrooted 
-trees in ggtree. The layout options for explicit network plots are *rectangular* or *slanted*.
-
-\url{https://bioconductor.org/packages/devel/bioc/vignettes/ggtree/inst/doc/treeVisualization.html}
-
+trees in ggtree. The layout options for explicit network plots are *rectangular*
+or *slanted*.
 
 
 \newpage
