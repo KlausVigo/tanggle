@@ -3,7 +3,6 @@
 #' @export
 fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
                             right = FALSE, mrsd = NULL, as.Date = FALSE, ...) {
-    ## root <- getRoot(model)
     nTips <- length(model$tip.label)
     label <- character(nrow(model$edge))
     isTip <- logical(nrow(model$edge))  ## edge leading to tip
