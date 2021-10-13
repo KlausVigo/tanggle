@@ -132,7 +132,9 @@ minimize_overlap <- function(x) {
         nodes2rot <- intersect(sort(unique(unlist(Ancestors(x,
                 c(x$reticulation))))), which(tabulate(x$edge[, 1]) > 1))
         for (i in seq_along(nodes2rot)) {
-            nh <- node.height(ape::rotate(x, nodes2rot[i]))
+            tmp <- ape::rotate(x, nodes2rot[i])
+            attr(tmp, "order") <- NULL
+            nh <- node.height(tmp)
             best_nr <- sum(abs(nh[x$reticulation[, 1]] -
                                 nh[x$reticulation[, 2]]))
             if (best_nr < best_r) {
@@ -140,10 +142,13 @@ minimize_overlap <- function(x) {
                 best_r <- best_nr
             }
         }
-        if (best_c > 0)
-            x <- ape::rotate(x, best_c) else (break)()
+        if (best_c > 0){
+            x <- ape::rotate(x, best_c)
+            attr(x, "order") <- NULL
+        }
+        else (break)()
     }
-    x
+    reorder(x)
 }
 
 #' These functions return the depths or heights of nodes and tips.

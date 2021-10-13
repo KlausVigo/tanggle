@@ -1,7 +1,7 @@
 Package: tanggle
 Type: Package
 Title: Visualization of Phylogenetic Networks
-Version: 0.99.2
+Version: 0.99.3
 Authors@R: c(person("Klaus", "Schliep", email="klaus.schliep@gmail.com", 
     role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2941-0161")),
              person("Marta", "Vidal-Garcia", role="aut"), 
@@ -40,5 +40,5 @@ biocViews: Software, Visualization, Phylogenetics, Alignment, Clustering,
 License: Artistic-2.0
 URL: https://klausvigo.github.io/tanggle, https://github.com/KlausVigo/tanggle
 BugReports: https://github.com/KlausVigo/tanggle/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(old_usage = TRUE)
