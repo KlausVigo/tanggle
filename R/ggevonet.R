@@ -64,6 +64,7 @@ ggevonet <- function(tr, mapping = NULL, layout = "slanted",
         ndigits = NULL, min_crossing = TRUE, ...) {
     layout <- match.arg(layout, c("rectangular", "slanted"))
     if(!is(tr, "evonet")) stop("tr must be of class 'evonet'")
+    tr <- reorder(tr)
     if (is.null(tr$edge.length)) {
         nh <- node_depth_evonet(tr)
         tr$edge.length <- nh[tr$edge[, 1]] - nh[tr$edge[, 2]]
