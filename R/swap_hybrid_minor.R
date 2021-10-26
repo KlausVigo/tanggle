@@ -12,6 +12,7 @@
 #' ggevonet(enet) + geom_tiplab()
 #' swapped_enet<-swap_hybrid_minor(enet,6)
 #' ggevonet(swapped_enet) + geom_tiplab()
+#' @importFrom ape node.depth.edgelength
 #' @export
 
 
@@ -25,7 +26,7 @@ swap_hybrid_minor <-function(net,hybrid_nodes,node_times=NULL){
   }
   
   for(hyb_nd in hybrid_nodes){
-    ##get the edges that point to the hybrid node of interes
+    ##get the edges that point to the hybrid node of interest
     edge_row<-which(net$edge[,2]==hyb_nd) ##get the edge in the 'edge' matrix
     ret_row <-which(net$reticulation[,2]==hyb_nd) ##get the edge in the 'reticulation' matrix
     
