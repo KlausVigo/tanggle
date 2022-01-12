@@ -1,0 +1,194 @@
+---
+title: "***tanggle***: Visualization of phylogenetic networks in a *ggplot2* framework"
+author:
+- name: Klaus Schliep
+  affiliation: Graz University of Technology
+- name:  Marta Vidal-García
+  affiliation: University of Calgary
+- name: Leann Biancani
+  affiliation: University of Rhode Island
+- name: Francisco Henao-Diaz
+  affiliation: University of British Columbia
+- name: Eren Ada
+  affiliation: University of Rhode Island
+- name: Claudia Solís-Lemus
+  affiliation: University of Wisconsin-Madison
+  email: klaus.schliep@gmail.com
+package: tanggle
+output:
+  BiocStyle::html_document
+vignette: |
+  %\VignetteIndexEntry{***tanggle***: Visualization of phylogenetic networks in a *ggplot2* framework}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: tanggle_references.bib  
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "#>"
+)
+suppressPackageStartupMessages({
+    library(tanggle, quietly=TRUE)
+    library(phangorn, quietly=TRUE)
+    library(ggtree, quietly=TRUE)
+})
+```
+
+\center
+![](../inst/extdata/logo.png){width=25%}
+\center
+
+# Introducción
+Esta es la viñeta en español para el paquete de R **tanggle**, en ella proveemos una vista general de sus funciones y ejemplos de uso. **Tanggle** extiende el paquete de R **ggtree** [@Yu2017], lo cual permite la visualización de múltiples tipos de redes filogenéticas usando la sintaxis de *ggplot2* [@Wickham2016]. Especificamente, **tanggle** contiene funciones que permiten al usuario visualizar: (1) redes divididas o implícitas  (no-enraizadas, no-direccionadas) y (2) redes explícitas (enraizadas, direccionadas) con reticulaciones. Estas funciones ofrecen alternativas a las funciones gráficas disponibles en *ape* [@Paradis2018] y *phangorn* [@Schliep2011].
+
+# Lista de funciones
+
+
+ name | Brief description |
+:-------- | :--------------------------------------------|
+`geom_splitnet` | Adds a *splitnet* layer to a ggplot, to combine visualising data and the network
+`ggevonet` | Grafica una red explícita de un objeto *phylo* 
+`ggsplitnet` | Grafica una red implícita de un objeto *phylo* 
+`minimize_overlap` | Reduce el número de líneas de reticulación entrecruzadas en la gráfica
+`node_depth_evonet` | Devuelve las profundidades o alturas de los nodos y puntas en la red filogenética
+
+# Para empezar 
+
+Instalar el paquete desde Bioconductor directamente:
+
+Install the package from Bioconductor directly:
+
+```{r install-bioc, eval=FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("tanggle")
+```
+
+O instalar la versión de desarrollo del paquete desde:
+[Github](https://github.com/KlausVigo/tanggle).
+
+```{r install-gh, eval=FALSE}
+if (!requireNamespace("remotes", quietly = TRUE))
+  install.packages("remotes")
+remotes::install_github("KlausVigo/tanggle")
+```
+
+Si necesita installer *ggtree* desde github:
+```{r install-ggtree, eval=FALSE}
+remotes::install_github("YuLab-SMU/ggtree")
+```
+
+Y cargar todas las librerías:
+```{r load-pkg, echo=TRUE, results='hide'}
+library(tanggle)
+library(phangorn)
+library(ggtree)
+```
+
+***
+
+# Redes dividida o implicitas
+
+Las redes divididas son objetos de visualización de datos que permiten la definición de 2 (o más) opciones de división no compatibles. Las redes divididas son usadas frecuentemente para graficar redes consenso [@Holland2004] o redes vecinas [@Bryant2004]. Esto puede llevarse a cabo utilizando las funciones `consensusNet` o `neighbor-net` en *phangorn* [@Schliep2011], o importando archivos Nexus provenientes de SplitsTree [@Huson2006].
+
+# Tipos de datos
+
+*tanggle* acepta tres formatos de entrada para redes divididas. Las siguientes opciones de entrada generan un objeto *network* para graficar.
+
+* Archivo Nexus creado con SplitsTree [@Huson2006] e importado con la función `read.nexus.network` en *phangorn* [@Schliep2011].
+    
+* Carga de red dividida en formato Nexus:
+```{r}
+fdir <- system.file("extdata/trees", package = "phangorn")
+Nnet <- phangorn::read.nexus.networx(file.path(fdir,"woodmouse.nxs"))
+```
+2. Una colección de árboles de genes (e.g., de RAxML [@Stamatakis2014RAxML]) en alguno de los siguientes formatos:
+Importar archivo Nexus con la función `read.nexus`
+Archivo de texto en formato Newick (un árbol de genes por línea) importado con la función `read.tree`
+
+Estimación de una red dividida consenso mediante la función `consensusNet` en *phangorn* [@Schliep2011].
+
+* Secuencias en Nexus, Fasta o formato Phylip importandas con la función `read.phyDat` en *phangorn* [@Schliep2011] o la función `read.dna` en *ape* [@Paradis2018]. Luego se calculan las matrices de distancia para los modelos de evolución específicos utilizando la función `dist.ml` en *phangorn* [@Schliep2011] o 
+`dist.dna` en *ape* [@Paradis2018]. Con base en las matrices de distancia, se reconstruye una red dividida utilizando la función `neighborNet` en *phangorn* [@Schliep2011]. 
+***Opcional***: las longitudes de las ramas pueden ser estimadas utilizando la función `splitsNetworks` en *phangorn* [@Schliep2011].
+
+
+
+## Para graficar una Red Dividida
+
+Podemos graficar una red con las siguientes opciones por defecto:
+```{r}
+p <- ggsplitnet(Nnet) + geom_tiplab2()
+p
+```
+
+
+Luego podemos establecer los límites para los ejes x & y permitiendo la lectura de los nombres de los ejes.
+```{r}
+p <- p + xlim(-0.019, .003) + ylim(-.01, .012) 
+p
+```
+
+Es posible renombrar las puntas. Aquí cambiamos los nombres por un consecutivo de 1 a 15:
+
+```{r}
+Nnet$translate$label <- seq_along(Nnet$tip.label)
+```
+
+Podemos incluir los nombres de las puntas con `geom_tiplab2`, y con esto personalizar algunas de sus opciones. Por ejemplo, las puntas de color azul, en negrilla e itálicas; también los nodos internos en verde:
+
+```{r}
+ggsplitnet(Nnet) + geom_tiplab2(col = "blue", font = 4, hjust = -0.15) + 
+    geom_nodepoint(col = "green", size = 0.25)
+```
+
+
+Los nodos pueden ser anotados con `geom_point`.
+```{r}
+ggsplitnet(Nnet) + geom_point(aes(shape = isTip, color = isTip), size = 2)
+```
+
+## Para graficar una Red Explícita
+
+La función `ggevonet` dibuja redes explícitas (árboles filogenéticos reticulados). Una adición reciente en *ape* [@Paradis2018] permite importar árboles en un formato Newick extendido [@Cardona2008].
+
+Importar una red explícita (ejemplo de Fig. 2 en Cardona et al. 2008):
+```{r}
+z <- read.evonet(text = "((1,((2,(3,(4)Y#H1)g)e,(((Y#H1,5)h,6)f)X#H2)c)a,
+                 ((X#H2,7)d,8)b)r;")
+```
+
+Para graficar una red explícita:
+```{r}
+ggevonet(z, layout = "rectangular") + geom_tiplab() + geom_nodelab()
+p <- ggevonet(z, layout = "slanted") + geom_tiplab() + geom_nodelab()
+p + geom_tiplab(size = 3, color = "purple")
+p + geom_nodepoint(color = "#b5e521", alpha = 1/4, size = 10)
+```
+
+
+# Resumen
+
+Esta viñeta ilustra todas las funciones en el paquete ***tanggle*** para R. Aquí se proveen algunos ejemplos de como graficar redes implícitas y explícitas. La visualización de redes divididas hace uso de la mayoría de las funciones compatibles con árboles no enraizados en ggtree. Las opciones de diseño para las redes explícitas son *rectangular* o *slanted*.
+
+
+\newpage
+
+
+\newpage
+\appendix
+# Session info {.unnumbered}
+```{r}
+sessionInfo()
+```
+
+
+
+# References
+\bibliography{tanggle}
+
+
+
+
