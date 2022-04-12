@@ -50,7 +50,7 @@ opposed to figures created with design software such as Adobe Illustrator.
 # Statement of need
 
 Recent years have seen an explosion of phylogenetic network inference methods
-`[@Than2008; @Huson2010; @Yu2012; @Gruenewald2013; @Yang2014; @Yu2014; @Solis-Lemus2016; @Wen2016; @2017netsymposium-blischak; @2017netsymposium-degnan; @Wen2018; @Zhang2018]` which can be divided into two main classes: methods to
+[@Than2008; @Huson2010; @Yu2012; @Gruenewald2013; @Yang2014; @Yu2014; @Solis-Lemus2016; @Wen2016; @2017netsymposium-blischak; @2017netsymposium-degnan; @Wen2018; @Zhang2018] which can be divided into two main classes: methods to
 reconstruct implicit (or split) networks, and methods to reconstruct
 explicit networks. Implicit networks are data-displayed objects that
 include two (or more) options for every uncertain split and these options can be resolved by collapsing parallel edges. For example, in
@@ -78,23 +78,23 @@ $\hat{\gamma} \approx 0.01$ could refer to horizontal gene transfer.
 ![Split network. Split configurations are represented as parallel lines which represent discordance in the input data (sequences or gene trees). It is not possible to know the specific source of the discordance (e.g. estimation error, incomplete lineage sorting (ILS) or gene flow).\label{fig:nettypesR}](figures/implicit.pdf)
 
 
-Alongside the development of methods to reconstruct phylogenetic networks, multiple plotting options have appeared (see table below). Here, we introduce `tanggle`, a novel R package that extends `ggtree` `[@ggtree]` to plot split and explicit networks.
-The package `ggtree` itself builds on the R package `ggplot2` `[@wickham2011ggplot2]` which implemented ideas from the influential book the "grammar of graphics" `[@wilkinson1999]` and as such, it provides a whole philosophy for composing sophisticated graphics. 
+Alongside the development of methods to reconstruct phylogenetic networks, multiple plotting options have appeared (see table below). Here, we introduce `tanggle`, a novel R package that extends `ggtree` [@ggtree] to plot split and explicit networks.
+The package `ggtree` itself builds on the R package `ggplot2` [@wickham2011ggplot2] which implemented ideas from the influential book the "grammar of graphics" [@wilkinson1999] and as such, it provides a whole philosophy for composing sophisticated graphics. 
 
 
-Our package `tanggle` builds on other existing popular R packages such as `ape` `[@Paradis2019]` and `phangorn` `[@Schliep2010]` using the functions and the data structures defined therein. The data structure for explicit networks (class `evonet`) is defined in the package `ape` along with functions to import and export these data as extended Newick format (see Appendix and Applications to real data). The class `evonet` extends the class `phylo`, which is the main data structure to store phylogenetic trees in R.  
-Similarly, the data structure for split networks (`networx`) also extending the class `phylo` is defined in `phangorn`. `phangorn` provides functions to import or export networks in nexus format and different algorithms to infer split networks (e.g. consensus networks `[@Holland2004]`, NeighborNet `[@Bryant2004]`).
-Methods to plot implicit and explicit networks have been already available using base R graphics in the `ape` and `phangorn` packages. Base R graphics are often a good choice to create a plot, but it might not be as easy to extend the graphics as with `ggplot2` without writing a new function. Furthermore `phangorn` allows to plot interactive 3D split networks making use of the package `rgl` `[@rgl]`.
+Our package `tanggle` builds on other existing popular R packages such as `ape` [@Paradis2019] and `phangorn` [@Schliep2010] using the functions and the data structures defined therein. The data structure for explicit networks (class `evonet`) is defined in the package `ape` along with functions to import and export these data as extended Newick format (see Appendix and Applications to real data). The class `evonet` extends the class `phylo`, which is the main data structure to store phylogenetic trees in R.  
+Similarly, the data structure for split networks (`networx`) also extending the class `phylo` is defined in `phangorn`. `phangorn` provides functions to import or export networks in nexus format and different algorithms to infer split networks (e.g. consensus networks [@Holland2004], NeighborNet [@Bryant2004]).
+Methods to plot implicit and explicit networks have been already available using base R graphics in the `ape` and `phangorn` packages. Base R graphics are often a good choice to create a plot, but it might not be as easy to extend the graphics as with `ggplot2` without writing a new function. Furthermore `phangorn` allows to plot interactive 3D split networks making use of the package `rgl` [@rgl].
 
 
 
 | R class (S3) | function name | network |  plotting system | package |
 | :---: | :---: | :---: | :---: | :---: |
-| phylo | plot.phylo, plotTree | phylogenetic tree | base R | ape, phytools `[@phytools]`|
+| phylo | plot.phylo, plotTree | phylogenetic tree | base R | ape, phytools [@phytools] |
 | phylo | ggtree | phylogenetic tree | ggplot2 | ggtree |
 | evonet | plot.evonet  | explicit | base R | ape |
 | evonet | ggevonet     | explicit | ggplot2 | tanggle |
 | networx | ggsplitnet    | implicit | ggplot2 | tanggle |
 | networx | plot.networx | implicit | base R, rgl | phangorn | 
-| haploNet | plot.haploNet | haplo type | base R  | pegas `[@Paradis2010]` | 
+| haploNet | plot.haploNet | haplo type | base R  | pegas [@Paradis2010] | 
 
