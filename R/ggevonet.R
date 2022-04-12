@@ -51,6 +51,8 @@ fortify.evonet <- function(model, data, layout = "rectangular",
 #' @importFrom ggplot2 aes_string
 #' @importFrom ggtree geom_tree2
 #' @importFrom ggtree theme_tree
+#' @importFrom phangorn coords
+#' @importFrom ape read.evonet
 #' @author Klaus Schliep
 #' @examples
 #' (enet <- ape::read.evonet(text='((a:2,(b:1)#H1:1):1,(#H1,c:1):2);'))
@@ -62,7 +64,7 @@ ggevonet <- function(tr, mapping = NULL, layout = "slanted",
         ndigits = NULL, min_crossing = TRUE, ...) {
     layout <- match.arg(layout, c("rectangular", "slanted"))
     if(!is(tr, "evonet")) stop("tr must be of class 'evonet'")
-    tr <- ape::reorder.phylo(tr)
+    tr <- reorder(tr)
     if (is.null(tr$edge.length)) {
         nh <- node_depth_evonet(tr)
         tr$edge.length <- nh[tr$edge[, 1]] - nh[tr$edge[, 2]]
@@ -95,6 +97,8 @@ ggevonet <- function(tr, mapping = NULL, layout = "slanted",
 #' reduces reticulation lines crossing over in plots
 #' @param x Tree of class 'evonet'
 #' @return  A Tree with rotated nodes of class 'evonet'
+#' @importFrom ape node.height rotate Ntip
+#' @importFrom phangorn Ancestors
 #' @author L. Francisco Henao Diaz
 #' @examples
 #' fishnet <- ape::read.evonet(text='(Xalvarezi,Xmayae,((Xsignum,((Xmonticolus,
@@ -122,15 +126,15 @@ minimize_overlap <- function(x) {
         stop("x should be an 'evonet' class")
     n_iter <- round(x$Nnode * 3/4)
     for (j in seq_len(n_iter)) {
-        h <- ape::node.height(x)
+        h <- node.height(x)
         best_r <- sum(abs(h[x$reticulation[, 1]] - h[x$reticulation[, 2]]))
         best_c <- -1
-        nodes2rot <- intersect(sort(unique(unlist(phangorn::Ancestors(x,
+        nodes2rot <- intersect(sort(unique(unlist(Ancestors(x,
                 c(x$reticulation))))), which(tabulate(x$edge[, 1]) > 1))
         for (i in seq_along(nodes2rot)) {
             tmp <- ape::rotate(x, nodes2rot[i])
             attr(tmp, "order") <- NULL
-            nh <- ape::node.height(tmp)
+            nh <- node.height(tmp)
             best_nr <- sum(abs(nh[x$reticulation[, 1]] -
                                 nh[x$reticulation[, 2]]))
             if (best_nr < best_r) {
@@ -144,7 +148,7 @@ minimize_overlap <- function(x) {
         }
         else (break)()
     }
-    ape::reorder.phylo(x)
+    reorder(x)
 }
 
 #' These functions return the depths or heights of nodes and tips.
@@ -161,16 +165,17 @@ minimize_overlap <- function(x) {
 #' z$edge.length <- nd[z$edge[,1]] - nd[z$edge[,2]]
 #' ggevonet(z)
 #'
+#' @importFrom phangorn getRoot Ancestors Descendants
 #' @export
 node_depth_evonet <- function(x, ...) {
     x <- ape::reorder.phylo(x)
-    root <- phangorn::getRoot(x)
+    root <- getRoot(x)
     max_nodes <- max(x$edge)
-    nTip <- length(x$tip.label)
-    desc <- phangorn::Descendants(x, seq_len(max_nodes), "children")
-    anc <- phangorn::Ancestors(x)
+    nTip <- Ntip(x)
+    desc <- Descendants(x, seq_len(max_nodes), "children")
+    anc <- Ancestors(x)
     pa <- vector("list", max_nodes)
-    ind <- which(x$edge[, 2] > nTip)
+    ind <- which(x$edge[, 2] > Ntip(x))
     pa[x$edge[ind, 2]] <- x$edge[ind, 1]
     for (i in seq_len(nrow(x$reticulation))) {
         pa[[x$reticulation[i, 2]]] <- sort(c(pa[[x$reticulation[i, 2]]],

@@ -1,4 +1,5 @@
 #' @method fortify networx
+#' @importFrom phangorn getRoot
 #' @export
 fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
                             right = FALSE, mrsd = NULL, as.Date = FALSE, ...) {
@@ -17,7 +18,7 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
                     branch.length = model$edge.length,
                     split = model$splitIndex, label = label, isTip = isTip)
     if (!is.null(model$.plot)) coord <- model$.plot$vertices
-    else coord <- phangorn::coords(model, dim = "equal_angle")
+    else coord <- coords(model, dim = "equal_angle")
     df <- cbind(df, x = coord[df$node, 1], y = coord[df$node, 2],
                 xend = coord[df$parent, 1], yend = coord[df$parent, 2])
     angle <- atan2(df$y - df$yend, df$x - df$xend) * 360/(2 * pi)
