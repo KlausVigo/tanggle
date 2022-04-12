@@ -1,5 +1,5 @@
 ---
-title: 'Gala: A Python package for galactic dynamics'
+title: 'tanggle: an R package for the visualization of phylogenetic networks'
 tags:
   - R
   - phylogenetics
