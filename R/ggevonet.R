@@ -144,7 +144,7 @@ minimize_overlap <- function(x) {
         }
         else (break)()
     }
-    reorder(x)
+    ape::reorder.phylo(x)
 }
 
 #' These functions return the depths or heights of nodes and tips.
@@ -164,7 +164,7 @@ minimize_overlap <- function(x) {
 #' @export
 node_depth_evonet <- function(x, ...) {
     x <- ape::reorder.phylo(x)
-    root <- phangorn:::getRoot(x)
+    root <- phangorn::getRoot(x)
     max_nodes <- max(x$edge)
     nTip <- length(x$tip.label)
     desc <- phangorn::Descendants(x, seq_len(max_nodes), "children")
