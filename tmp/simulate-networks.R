@@ -18,3 +18,4 @@ networks <- sim.bdh.taxa.ssa(n = 15, ## number of tips
                              hyb.rate.fxn = NULL, 
                              trait.model = NULL)
 plot(networks[[1]])
+write.net(networks[[1]])
