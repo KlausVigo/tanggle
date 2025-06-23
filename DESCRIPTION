@@ -10,7 +10,8 @@ Authors@R: c(person("Klaus", "Schliep", email="klaus.schliep@gmail.com",
              person("Leann", "Biancani", role="aut"), 
              person("Eren", "Ada", role="aut"), 
              person("L. Francisco", "Henao Diaz", role="aut"), 
-             person("Guangchuang", "Yu", role = c("ctb")))
+             person("Guangchuang", "Yu", role = c("ctb")),
+             person("Joshua", "Justison", role="aut"))
 Description: Offers functions for plotting split  (or implicit) networks 
     (unrooted, undirected) and explicit networks (rooted, directed) with 
     reticulations extending. 'ggtree' and using functions from 'ape' and 
