@@ -3,7 +3,7 @@
 fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
                             right = FALSE, mrsd = NULL, as.Date = FALSE, ...) {
     nTips <- length(model$tip.label)
-    label <- character(nrow(model$edge))
+    label <-  rep(NA_character_, nrow(model$edge))
     isTip <- logical(nrow(model$edge))  ## edge leading to tip
     if (!is.null(model$translate)) {
         ind <- match(model$translate$node, model$edge[, 2])
