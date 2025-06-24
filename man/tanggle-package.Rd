@@ -6,7 +6,7 @@
 \alias{tanggle-package}
 \title{tanggle: Visualization of Phylogenetic Networks}
 \description{
-Offers functions for plotting split (or implicit) networks (unrooted, undirected) and explicit networks (rooted, directed) with reticulations extending. 'ggtree' and using functions from 'ape' and 'phangorn'. It extends the 'ggtree' package [@Yu2017] to allow the visualization of phylogenetic networks using the 'ggplot2' syntax. It offers an alternative to the plot functions already available in 'ape' Paradis and Schliep (2019) <doi:10.1093/bioinformatics/bty633> and 'phangorn' Schliep (2011) <doi:10.1093/bioinformatics/btq706>.
+Offers functions for plotting split (or implicit) networks (unrooted, undirected) and explicit networks (rooted, directed) with reticulations extending. 'ggtree' and using functions from 'ape' and 'phangorn'. It extends the 'ggtree' package [@Yu2017] to allow the visualization of phylogenetic networks using the 'ggplot2' syntax. It offers an alternative to the plot functions already available in 'ape' Paradis and Schliep (2019) \doi{10.1093/bioinformatics/bty633} and 'phangorn' Schliep (2011) \doi{10.1093/bioinformatics/btq706}.
 }
 \seealso{
 Useful links:
@@ -27,6 +27,7 @@ Authors:
   \item Leann Biancani
   \item Eren Ada
   \item L. Francisco Henao Diaz
+  \item Joshua Justison
 }
 
 Other contributors:

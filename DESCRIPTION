@@ -41,5 +41,6 @@ biocViews: Software, Visualization, Phylogenetics, Alignment, Clustering,
 License: Artistic-2.0
 URL: https://klausvigo.github.io/tanggle, https://github.com/KlausVigo/tanggle
 BugReports: https://github.com/KlausVigo/tanggle/issues
-RoxygenNote: 7.1.2
+Encoding: UTF-8
+RoxygenNote: 7.3.2
 Roxygen: list(old_usage = TRUE)
