@@ -13,6 +13,7 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
         label[ind] <- model$tip.label
     }
     isTip[ind] <- TRUE
+    if(is.null(model$edge.length)) model$edge.length <- rep(1, nrow(model$edge))
     df <- data.frame(node = model$edge[, 2], parent = model$edge[, 1],
                     branch.length = model$edge.length,
                     split = model$splitIndex, label = label, isTip = isTip)
