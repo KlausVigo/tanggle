@@ -44,4 +44,4 @@ and also
 Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution 2017, 8(1):28-36
 
 
-<img src="man/figures.png" align="left" width="120" />
+<img src="man/figures/spider.png" align="left" width="120" />
