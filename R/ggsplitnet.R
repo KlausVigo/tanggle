@@ -50,6 +50,15 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #' @references Schliep, K., Potts, A. J., Morrison, D. A. and Grimm, G. W.
 #' (2017), Intertwining phylogenetic trees and networks.
 #' \emph{Methods Ecol Evol}. \bold{8}, 1212--1220. doi:10.1111/2041-210X.12760
+#'
+#' Dress, A.W.M. and Huson, D.H. (2004) Constructing Splits Graphs
+#' \emph{IEEE/ACM Transactions on Computational Biology and Bioinformatics
+#' (TCBB)}, \bold{1(3)}, 109--115
+#'
+#' Bagci, C., Bryant, D., Cetinkaya, B. and Huson, D.H. (2021), Microbial
+#' Phylogenetic Context Using Phylogenetic Outlines. \emph{Genome Biology and
+#' Evolution}. Volume 13. Issue 9. evab213
+#'
 #' @importFrom utils modifyList
 #' @importFrom ggplot2 ggplot
 #' @importFrom ggplot2 xlab
