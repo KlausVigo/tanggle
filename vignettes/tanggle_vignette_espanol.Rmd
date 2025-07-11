@@ -16,7 +16,8 @@ author:
   email: klaus.schliep@gmail.com
 package: tanggle
 output:
-  BiocStyle::html_document
+  BiocStyle::html_document:
+    toc_float: true
 vignette: |
   %\VignetteIndexEntry{***tanggle***: Visualización de redes filogenéticas con *ggplot2*}
   %\VignetteEngine{knitr::rmarkdown}
@@ -36,9 +37,6 @@ suppressPackageStartupMessages({
 })
 ```
 
-\center
-![](../inst/extdata/logo.png){width=25%}
-\center
 
 # Introducción
 Esta es la viñeta en español para el paquete de R **tanggle**, en ella proveemos una vista general de sus funciones y ejemplos de uso. **Tanggle** extiende el paquete de R **ggtree** [@Yu2017], lo cual permite la visualización de múltiples tipos de redes filogenéticas usando la sintaxis de *ggplot2* [@Wickham2016]. Especificamente, **tanggle** contiene funciones que permiten al usuario visualizar: (1) redes divididas o implícitas  (no-enraizadas, no-direccionadas) y (2) redes explícitas (enraizadas, direccionadas) con reticulaciones. Estas funciones ofrecen alternativas a las funciones gráficas disponibles en *ape* [@Paradis2018] y *phangorn* [@Schliep2011].
