@@ -1,7 +1,7 @@
 [![Bioc release status](http://www.bioconductor.org/shields/build/release/bioc/tanggle.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/tanggle)
 [![Bioc devel status](http://www.bioconductor.org/shields/build/devel/bioc/tanggle.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/tanggle)
 [![Bioc downloads rank](https://bioconductor.org/shields/downloads/release/tanggle.svg)](http://bioconductor.org/packages/stats/bioc/tanggle/)
-![Bioc support](https://bioconductor.org/shields/posts/tanggle.svg)](https://support.bioconductor.org/tag/tanggle)
+[![Bioc support](https://bioconductor.org/shields/posts/tanggle.svg)](https://support.bioconductor.org/tag/tanggle)
 [![Bioc history](https://bioconductor.org/shields/years-in-bioc/tanggle.svg)](https://bioconductor.org/packages/release/bioc/html/tanggle.html#since)
 [![Bioc last commit](https://bioconductor.org/shields/lastcommit/devel/bioc/tanggle.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/tanggle/)
 [![Bioc dependencies](https://bioconductor.org/shields/dependencies/release/tanggle.svg)](https://bioconductor.org/packages/release/bioc/html/tanggle.html#since)
