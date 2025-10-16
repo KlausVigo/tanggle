@@ -11,10 +11,12 @@ fortify.evonet <- function(model, data, layout = "rectangular",
     df <- cbind(df, hybridEdge = hybridEdge)
 
     reticulation <- model$reticulation
-    df.ret <- df[reticulation[, 1], , drop = FALSE]
-    df.ret[, c("node", "parent")] <- reticulation
-    df.ret[, "hybridEdge"] <- TRUE
-    df <- rbind(df, df.ret)
+    if(nrow(reticulation) > 0){
+        df.ret <- df[reticulation[, 1], , drop = FALSE]
+        df.ret[, c("node", "parent")] <- reticulation
+        df.ret[, "hybridEdge"] <- TRUE
+        df <- rbind(df, df.ret)
+    }
     df
 }
 

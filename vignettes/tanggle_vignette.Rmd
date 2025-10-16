@@ -16,7 +16,8 @@ author:
   email: klaus.schliep@gmail.com
 package: tanggle
 output:
-  BiocStyle::html_document
+  BiocStyle::html_document:
+    toc_float: true
 vignette: |
   %\VignetteIndexEntry{***tanggle***: Visualization of phylogenetic networks in a *ggplot2* framework}
   %\VignetteEngine{knitr::rmarkdown}
@@ -37,9 +38,6 @@ suppressPackageStartupMessages({
 })
 ```
 
-\center
-![](../inst/extdata/logo.png){width=25%}
-\center
 
 
 # Introduction

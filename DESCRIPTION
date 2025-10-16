@@ -1,7 +1,7 @@
 Package: tanggle
 Type: Package
 Title: Visualization of Phylogenetic Networks
-Version: 1.1.1
+Version: 1.15.2
 Authors@R: c(person("Klaus", "Schliep", email="klaus.schliep@gmail.com", 
     role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2941-0161")),
              person("Marta", "Vidal-Garcia", role="aut"), 
@@ -10,7 +10,8 @@ Authors@R: c(person("Klaus", "Schliep", email="klaus.schliep@gmail.com",
              person("Leann", "Biancani", role="aut"), 
              person("Eren", "Ada", role="aut"), 
              person("L. Francisco", "Henao Diaz", role="aut"), 
-             person("Guangchuang", "Yu", role = c("ctb")))
+             person("Guangchuang", "Yu", role = c("ctb")),
+             person("Joshua", "Justison", role="aut"))
 Description: Offers functions for plotting split  (or implicit) networks 
     (unrooted, undirected) and explicit networks (rooted, directed) with 
     reticulations extending. 'ggtree' and using functions from 'ape' and 
@@ -25,7 +26,7 @@ Depends:
     ggtree
 Imports:
     ape (>= 5.0), 
-    phangorn (>= 2.5),
+    phangorn (>= 2.12),
     utils,
     methods
 Suggests:
@@ -38,7 +39,8 @@ VignetteBuilder: knitr
 biocViews: Software, Visualization, Phylogenetics, Alignment, Clustering, 
     MultipleSequenceAlignment, DataImport
 License: Artistic-2.0
-URL: https://klausvigo.github.io/tanggle, https://github.com/KlausVigo/tanggle
+URL: https://klausvigo.github.io/tanggle/, https://github.com/KlausVigo/tanggle
 BugReports: https://github.com/KlausVigo/tanggle/issues
-RoxygenNote: 7.1.2
+Encoding: UTF-8
+RoxygenNote: 7.3.2
 Roxygen: list(old_usage = TRUE)

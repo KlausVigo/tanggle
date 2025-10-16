@@ -3,7 +3,7 @@
 fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
                             right = FALSE, mrsd = NULL, as.Date = FALSE, ...) {
     nTips <- length(model$tip.label)
-    label <- character(nrow(model$edge))
+    label <-  rep(NA_character_, nrow(model$edge))
     isTip <- logical(nrow(model$edge))  ## edge leading to tip
     if (!is.null(model$translate)) {
         ind <- match(model$translate$node, model$edge[, 2])
@@ -13,6 +13,7 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
         label[ind] <- model$tip.label
     }
     isTip[ind] <- TRUE
+    if(is.null(model$edge.length)) model$edge.length <- rep(1, nrow(model$edge))
     df <- data.frame(node = model$edge[, 2], parent = model$edge[, 1],
                     branch.length = model$edge.length,
                     split = model$splitIndex, label = label, isTip = isTip)
@@ -49,6 +50,15 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #' @references Schliep, K., Potts, A. J., Morrison, D. A. and Grimm, G. W.
 #' (2017), Intertwining phylogenetic trees and networks.
 #' \emph{Methods Ecol Evol}. \bold{8}, 1212--1220. doi:10.1111/2041-210X.12760
+#'
+#' Dress, A.W.M. and Huson, D.H. (2004) Constructing Splits Graphs
+#' \emph{IEEE/ACM Transactions on Computational Biology and Bioinformatics
+#' (TCBB)}, \bold{1(3)}, 109--115
+#'
+#' Bagci, C., Bryant, D., Cetinkaya, B. and Huson, D.H. (2021), Microbial
+#' Phylogenetic Context Using Phylogenetic Outlines. \emph{Genome Biology and
+#' Evolution}. Volume 13. Issue 9. evab213
+#'
 #' @importFrom utils modifyList
 #' @importFrom ggplot2 ggplot
 #' @importFrom ggplot2 xlab
