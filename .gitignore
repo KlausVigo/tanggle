@@ -3,9 +3,12 @@
 __MACOSX
 docs
 inst/doc
+ms
+po
+tmp
+vignettes/tanggle_benchmark.Rmd
 .Rproj.user
 *.DS_Store*
-
 # from tex files #
 #################
 *.aux
