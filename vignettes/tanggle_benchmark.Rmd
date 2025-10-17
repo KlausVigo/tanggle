@@ -1,0 +1,154 @@
+---
+title: '***tanggle*** benchmark'
+author:
+- name: L. Francisco Henao-Diaz
+  affiliation: University of California, Berkeley
+date: '2025'
+output:
+  pdf_document: default
+  html_document: default
+package: tanggle
+vignette: |
+  %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{***tanggle***: Visualization of phylogenetic networks in a *ggplot2* framework}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "#>"
+)
+
+suppressPackageStartupMessages({
+    library(phangorn, quietly = TRUE)
+    library(ggtree, quietly = TRUE)
+    library(tanggle, quietly = TRUE)
+    library(ggret, quietly = TRUE)
+    library(rbenchmark, quietly = TRUE)
+    library(profmem, quietly = TRUE)
+    library(profvis, quietly = TRUE)
+})
+```
+
+Here we present a vignette providing a time benchmarking and memory profiling for ***tanggle*** and comparing its performance with ***ggret***.
+
+<br />
+
+* Load libraries:
+```{r load-pkg, echo=TRUE, results='hide'}
+library(phangorn)
+library(ggtree)
+library(tanggle)
+library(ggret)
+library(microbenchmark)
+library(profmem)
+library(profvis)
+```
+
+<br />
+
+## Plotting a Split Network:
+* Read in a split network:
+```{r}
+fdir <- system.file("extdata/trees", package = "phangorn")
+Nnet <- phangorn::read.nexus.networx(file.path(fdir, "woodmouse.nxs"))
+Nnet
+```
+<br />
+* Benchmark (time):
+```{r}
+split_mbm <- microbenchmark(
+    "tanggle" = {
+        ggsplitnet(Nnet) + 
+            geom_tiplab2(col = "blue", font = 2, hjust = -0.15) + 
+            geom_nodepoint(col = "green", size = 0.15) + 
+            geom_point(aes(shape = isTip, color = isTip), size = 2)
+    },
+times = 100, unit = "ms")
+split_mbm
+
+autoplot(split_mbm, log = T)
+```
+
+<br />
+* Memory profiling (memory use)
+```{r}
+# ***tanggle***
+profmem({
+      ggsplitnet(Nnet) + 
+            geom_tiplab2(col = "blue", font = 2, hjust = -0.15) + 
+            geom_nodepoint(col = "green", size = 0.15) + 
+            geom_point(aes(shape = isTip, color = isTip), size = 2)
+      }) %>% total()
+```
+<br />
+
+* Profile visualization
+```{r}
+# ***tanggle***
+profvis(ggsplitnet(Nnet) + 
+            geom_tiplab2(col = "blue", font = 2, hjust = -0.15) + 
+            geom_nodepoint(col = "green", size = 0.15) + 
+            geom_point(aes(shape = isTip, color = isTip), size = 2))
+
+```
+
+<br />
+
+## Plotting Explicit Networks
+* Read in an explicit network (example from Solis-Lemus):
+```{r}
+z <- read.evonet(text = "(Xgordoni,Xmeyeri,((Xcouchianus,(Xvariatus,((Xevelynae,((Xxiphidium,(((Xmontezumae,(Xcortezi,(Xbirchmanni_GARC,Xmalinche_CHIC2):0.814868632462172):0.7339040696843399):0.5224384858639906,((Xnigrensis,Xmultilineatus):1.4367182085151307,(Xpygmaeus,Xcontinens):2.0447786245210287):2.6464098455989733):2.2506737848071214,(((Xmonticolus,(Xclemenciae_F2,#H25:::0.03200077145629466):0.9772659289510305):1.7118165203345994,(Xsignum,((Xhellerii)#H25:::0.9679992285437053,(Xalvarezi,Xmayae):0.278339178251034):0.288491677646806):2.1839900099672365):0.9056153500591784)#H24:0.5364124979784958::0.7299033819875282):2.6876197509900734):1.1659723683331795,(Xmilleri,(Xandersi,(Xmaculatus,#H24:0.8066663898325459::0.27009661801247176):0.8325775260723889):0.1290830442066665):0.0):0.6302517903683766):0.839299222752995)#H26:0.06586670344347094::0.9925203072765767):4.348263632092737):0.04290511893634737,#H26:0.002825123524157162::0.007479692723423299):0.22180429646415598);")
+```
+
+<br />
+* Benchmark (time):
+```{r}
+expl_mbm <- microbenchmark(
+    "tanggle" = {
+        ggevonet(z, layout = "rectangular") 
+    },
+    "ggret" = {
+        ggret::ggret(z, retcol = "blue", retlinetype = 1, arrows = T, rettype = "straight")
+    },
+times = 100, unit = "ms")
+expl_mbm
+
+autoplot(expl_mbm, log = T)
+```
+
+<br />
+* Memory profiling (memory use)
+```{r}
+# ***tanggle***
+profmem({
+      ggevonet(z, layout = "rectangular")
+      }) %>% total()
+
+# ***ggret***
+profmem({
+      ggret::ggret(z, retcol = "red", retlinetype = 3)
+      }) %>% total()
+```
+
+* Profile visualization
+```{r}
+# ***tanggle***
+profvis(ggevonet(z, layout = "rectangular"))
+
+# ***ggret***
+profvis(ggret(z, retcol = "red", retlinetype = 3))
+```
+ 
+
+
+<br />
+<br />
+
+# Session info {.unnumbered}
+```{r}
+sessionInfo()
+```
+
