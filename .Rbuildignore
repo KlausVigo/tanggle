@@ -3,5 +3,8 @@
 ^\.Rproj\.user$
 ^\.github$
 ^_pkgdown\.yml$
+^vignettes/tanggle_benchmark.Rmd
 ^docs$
+^ms$
+^tmp$
 ^pkgdown$

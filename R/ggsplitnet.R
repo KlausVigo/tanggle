@@ -68,6 +68,7 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #' @importFrom ggplot2 ylim
 #' @importFrom ggplot2 coord_flip
 #' @importFrom ggplot2 coord_polar
+#' @importFrom rlang sym
 #' @importFrom ggtree theme_tree
 #' @importFrom methods is
 #' @author Klaus Schliep
@@ -84,14 +85,14 @@ ggsplitnet <- function(tr, mapping = NULL, layout = "slanted",
     if(!is(tr, "networx")) stop("tr must be of class 'networx'")
     layout <- match.arg(layout, c("slanted"))
     if (is.null(mapping)) {
-        mapping <- aes_(~x, ~y)
+      mapping <- aes(!!sym("x"), !!sym("y"))
     } else {
-        mapping <- modifyList(aes_(~x, ~y), mapping)
+        mapping <- modifyList(aes(!!sym("x"), !!sym("y")), mapping)
     }
-    p <- ggplot(tr, mapping = mapping, layout = layout, mrsd = mrsd,
-            as.Date = as.Date, yscale = yscale, yscale_mapping = yscale_mapping,
-            ladderize = ladderize, right = right, branch.length = branch.length,
-            ndigits = ndigits, ...)
+    p <- suppressWarnings(ggplot(tr, mapping = mapping, layout = layout,
+          mrsd = mrsd, as.Date = as.Date, yscale = yscale,
+          yscale_mapping = yscale_mapping, ladderize = ladderize,
+          right = right, branch.length = branch.length, ndigits = ndigits, ...))
     p <- p + geom_splitnet(layout = layout, ...)
     p <- p + theme_tree()
     class(p) <- c("ggtree", class(p))

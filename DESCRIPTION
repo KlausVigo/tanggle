@@ -22,13 +22,15 @@ Description: Offers functions for plotting split  (or implicit) networks
     (2011) <doi:10.1093/bioinformatics/btq706>.
 Depends:
     R (>= 4.1),
-    ggplot2 (>= 2.2.0),
+    ggplot2 (>= 3.0.0),
     ggtree
 Imports:
     ape (>= 5.0), 
     phangorn (>= 2.12),
+    rlang,
     utils,
-    methods
+    methods,
+    dplyr
 Suggests:
     tinytest,
     BiocStyle,
@@ -42,5 +44,5 @@ License: Artistic-2.0
 URL: https://klausvigo.github.io/tanggle/, https://github.com/KlausVigo/tanggle
 BugReports: https://github.com/KlausVigo/tanggle/issues
 Encoding: UTF-8
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Roxygen: list(old_usage = TRUE)
