@@ -59,6 +59,11 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #' Phylogenetic Context Using Phylogenetic Outlines. \emph{Genome Biology and
 #' Evolution}. Volume 13. Issue 9. evab213
 #'
+#' Potts, A.J. and Hedderson, T.A. and Grimm, G.W. (2013), Constructing
+#' Phylogenies in the Presence Of Intra-Individual Site Polymorphisms (2ISPs)
+#' with a Focus on the Nuclear Ribosomal Cistron, \emph{Systematic Biology}.
+#' \bold{63(1)}, 1--16
+#'
 #' @importFrom utils modifyList
 #' @importFrom ggplot2 ggplot
 #' @importFrom ggplot2 xlab
@@ -77,6 +82,13 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #' dm <- phangorn::dist.ml(yeast)
 #' nnet <- phangorn::neighborNet(dm)
 #' ggsplitnet(nnet) + geom_tiplab2()
+#'
+#' library(phangorn)
+#' fdir <- system.file("extdata/examples", package = "tanggle")
+#' nymania <- read.phyDat(file.path(fdir,
+#'            "Nymania.capensis.ITS.alignment.fasta"), format="fasta")
+#' nnet <- neighborNet(dist.p(nymania))
+#' ggsplitnet(nnet)
 #' @export
 ggsplitnet <- function(tr, mapping = NULL, layout = "slanted",
         mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,

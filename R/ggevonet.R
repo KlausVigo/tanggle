@@ -64,6 +64,7 @@ fortify.evonet <- function(model, data, layout = "rectangular",
 #' ggevonet(enet) + geom_tiplab()
 #' ggevonet(enet, layout = "rectangular") + geom_tiplab()
 ## p + geom_label(aes(x=branch, y=branch_y, label=probability))
+#'
 #' @export
 ggevonet <- function(tr, mapping = NULL, layout = "slanted",
         mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
