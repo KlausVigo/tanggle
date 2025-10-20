@@ -45,6 +45,13 @@ data(yeast, package='phangorn')
 dm <- phangorn::dist.ml(yeast)
 nnet <- phangorn::neighborNet(dm)
 ggsplitnet(nnet) + geom_tiplab2()
+
+library(phangorn)
+fdir <- system.file("extdata/examples", package = "tanggle")
+nymania <- read.phyDat(file.path(fdir,
+           "Nymania.capensis.ITS.alignment.fasta"), format="fasta")
+nnet <- neighborNet(dist.p(nymania))
+ggsplitnet(nnet)
 }
 \references{
 Schliep, K., Potts, A. J., Morrison, D. A. and Grimm, G. W.
@@ -58,6 +65,11 @@ Dress, A.W.M. and Huson, D.H. (2004) Constructing Splits Graphs
 Bagci, C., Bryant, D., Cetinkaya, B. and Huson, D.H. (2021), Microbial
 Phylogenetic Context Using Phylogenetic Outlines. \emph{Genome Biology and
 Evolution}. Volume 13. Issue 9. evab213
+
+Potts, A.J. and Hedderson, T.A. and Grimm, G.W. (2013), Constructing
+Phylogenies in the Presence Of Intra-Individual Site Polymorphisms (2ISPs)
+with a Focus on the Nuclear Ribosomal Cistron, \emph{Systematic Biology}.
+\bold{63(1)}, 1--16
 }
 \seealso{
 \code{\link[ggtree]{ggtree}}, \code{\link[phangorn]{networx}},

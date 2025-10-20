@@ -46,6 +46,7 @@ drawing phylogenetic tree from phylo object
 (enet <- ape::read.evonet(text='((a:2,(b:1)#H1:1):1,(#H1,c:1):2);'))
 ggevonet(enet) + geom_tiplab()
 ggevonet(enet, layout = "rectangular") + geom_tiplab()
+
 }
 \seealso{
 \code{\link[ape]{evonet}}, \code{\link[ggtree]{ggtree}}
