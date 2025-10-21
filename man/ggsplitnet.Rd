@@ -7,7 +7,7 @@
 ggsplitnet(tr, mapping = NULL, layout = "slanted", mrsd = NULL,
   as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
   ladderize = FALSE, right = FALSE, branch.length = "branch.length",
-  ndigits = NULL, ...)
+  ndigits = NULL, angle = 0, ...)
 }
 \arguments{
 \item{tr}{a networx object}
@@ -32,6 +32,8 @@ ggsplitnet(tr, mapping = NULL, layout = "slanted", mrsd = NULL,
 
 \item{ndigits}{number of digits to round numerical annotation variable}
 
+\item{angle}{rotate the plot.}
+
 \item{...}{additional parameter}
 }
 \value{
@@ -51,7 +53,7 @@ fdir <- system.file("extdata/examples", package = "tanggle")
 nymania <- read.phyDat(file.path(fdir,
            "Nymania.capensis.ITS.alignment.fasta"), format="fasta")
 nnet <- neighborNet(dist.p(nymania))
-ggsplitnet(nnet)
+ggsplitnet(nnet) + geom_tiplab2()
 }
 \references{
 Schliep, K., Potts, A. J., Morrison, D. A. and Grimm, G. W.

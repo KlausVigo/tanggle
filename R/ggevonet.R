@@ -63,7 +63,8 @@ fortify.evonet <- function(model, data, layout = "rectangular",
 #' (enet <- ape::read.evonet(text='((a:2,(b:1)#H1:1):1,(#H1,c:1):2);'))
 #' ggevonet(enet) + geom_tiplab()
 #' ggevonet(enet, layout = "rectangular") + geom_tiplab()
-## p + geom_label(aes(x=branch, y=branch_y, label=probability))
+## p + geom_label2(aes(x=branch, y=branch_y, label=round(probability, digits=2),
+##    subset = hybridEdge == TRUE)
 #'
 #' @export
 ggevonet <- function(tr, mapping = NULL, layout = "slanted",
@@ -74,8 +75,8 @@ ggevonet <- function(tr, mapping = NULL, layout = "slanted",
     if(!is(tr, "evonet")) stop("tr must be of class 'evonet'")
     tr <- ape::reorder.phylo(tr)
     if (is.null(tr$edge.length)) {
-        # nh <- node_depth_evonet(tr)
-        nh <- node.depth(tr, 2)
+        nh <- node_depth_evonet(tr)
+        # nh <- node.depth(tr, 2)
         tr$edge.length <- nh[tr$edge[, 1]] - nh[tr$edge[, 2]]
     }
     if (min_crossing) {

@@ -1,7 +1,8 @@
 #' @method fortify networx
 #' @export
 fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
-                            right = FALSE, mrsd = NULL, as.Date = FALSE, ...) {
+                            right = FALSE, mrsd = NULL, as.Date = FALSE,
+                            angle = 0, ...) {
     nTips <- length(model$tip.label)
     label <-  rep(NA_character_, nrow(model$edge))
     isTip <- logical(nrow(model$edge))  ## edge leading to tip
@@ -19,6 +20,17 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
                     split = model$splitIndex, label = label, isTip = isTip)
     if (!is.null(model$.plot)) coord <- model$.plot$vertices
     else coord <- phangorn::coords(model, dim = "equal_angle")
+
+    if(angle != 0){
+      rotate_matrix <- function(x, theta){
+        rot_matrix <- matrix(c(cos(theta), sin(theta), -sin(theta), cos(theta)),
+                             2, 2, byrow = TRUE)
+        x %*% rot_matrix
+      }
+      angle <- angle * pi/180 #
+      coord <- rotate_matrix(coord, angle)
+    }
+
     df <- cbind(df, x = coord[df$node, 1], y = coord[df$node, 2],
                 xend = coord[df$parent, 1], yend = coord[df$parent, 2])
     angle <- atan2(df$y - df$yend, df$x - df$xend) * 360/(2 * pi)
@@ -43,6 +55,7 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #' @param right logical
 #' @param branch.length variable for scaling branch, if 'none' draw cladogram
 #' @param ndigits number of digits to round numerical annotation variable
+#' @param angle rotate the plot.
 #' @param ... additional parameter
 #' @return tree
 #' @seealso \code{\link[ggtree]{ggtree}}, \code{\link[phangorn]{networx}},
@@ -88,12 +101,12 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #' nymania <- read.phyDat(file.path(fdir,
 #'            "Nymania.capensis.ITS.alignment.fasta"), format="fasta")
 #' nnet <- neighborNet(dist.p(nymania))
-#' ggsplitnet(nnet)
+#' ggsplitnet(nnet) + geom_tiplab2()
 #' @export
 ggsplitnet <- function(tr, mapping = NULL, layout = "slanted",
         mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
         ladderize = FALSE, right = FALSE, branch.length = "branch.length",
-        ndigits = NULL, ...) {
+        ndigits = NULL, angle=0, ...) {
     if(!is(tr, "networx")) stop("tr must be of class 'networx'")
     layout <- match.arg(layout, c("slanted"))
     if (is.null(mapping)) {
@@ -104,9 +117,10 @@ ggsplitnet <- function(tr, mapping = NULL, layout = "slanted",
     p <- suppressWarnings(ggplot(tr, mapping = mapping, layout = layout,
           mrsd = mrsd, as.Date = as.Date, yscale = yscale,
           yscale_mapping = yscale_mapping, ladderize = ladderize,
-          right = right, branch.length = branch.length, ndigits = ndigits, ...))
+          right = right, branch.length = branch.length, ndigits = ndigits,
+          angle = angle, ...))
     p <- p + geom_splitnet(layout = layout, ...)
-    p <- p + theme_tree()
+    p <- p + theme_tree() + coord_fixed()
     class(p) <- c("ggtree", class(p))
     return(p)
 }
