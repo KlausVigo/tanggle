@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">tanggle</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.15.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.15.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ggsplitnet</span><span class="op">(</span><span class="va">tr</span>, mapping <span class="op">=</span> <span class="cn">NULL</span>, layout <span class="op">=</span> <span class="st">"slanted"</span>, mrsd <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  as.Date <span class="op">=</span> <span class="cn">FALSE</span>, yscale <span class="op">=</span> <span class="st">"none"</span>, yscale_mapping <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ladderize <span class="op">=</span> <span class="cn">FALSE</span>, right <span class="op">=</span> <span class="cn">FALSE</span>, branch.length <span class="op">=</span> <span class="st">"branch.length"</span>,</span>
-<span>  ndigits <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span>  ndigits <span class="op">=</span> <span class="cn">NULL</span>, angle <span class="op">=</span> <span class="fl">0</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -96,6 +96,10 @@
 <dd><p>number of digits to round numerical annotation variable</p></dd>
 
 
+<dt id="arg-angle">angle<a class="anchor" aria-label="anchor" href="#arg-angle"></a></dt>
+<dd><p>rotate the plot.</p></dd>
+
+
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>additional parameter</p></dd>
 
@@ -114,7 +118,11 @@
 (TCBB)</em>, <b>1(3)</b>, 109–115</p>
 <p>Bagci, C., Bryant, D., Cetinkaya, B. and Huson, D.H. (2021), Microbial
 Phylogenetic Context Using Phylogenetic Outlines. <em>Genome Biology and
-Evolution</em>. Volume 13. Issue 9. evab213</p>
+Evolution</em>. <b>13(9)</b>, evab213</p>
+<p>Potts, A.J. and Hedderson, T.A. and Grimm, G.W. (2013), Constructing
+Phylogenies in the Presence Of Intra-Individual Site Polymorphisms (2ISPs)
+with a Focus on the Nuclear Ribosomal Cistron, <em>Systematic Biology</em>.
+<b>63(1)</b>, 1–16</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -133,6 +141,20 @@ Evolution</em>. Volume 13. Issue 9. evab213</p>
 <span class="r-in"><span><span class="va">nnet</span> <span class="op">&lt;-</span> <span class="fu">phangorn</span><span class="fu">::</span><span class="fu"><a href="https://klausvigo.github.io/phangorn/reference/neighborNet.html" class="external-link">neighborNet</a></span><span class="op">(</span><span class="va">dm</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">ggsplitnet</span><span class="op">(</span><span class="va">nnet</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_tiplab2</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggsplitnet-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KlausVigo/phangorn" class="external-link">phangorn</a></span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: ape</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘ape’</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked from ‘package:ggtree’:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     rotate</span>
+<span class="r-in"><span><span class="va">fdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/examples"</span>, package <span class="op">=</span> <span class="st">"tanggle"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">nymania</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://klausvigo.github.io/phangorn/reference/read.phyDat.html" class="external-link">read.phyDat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">fdir</span>,</span></span>
+<span class="r-in"><span>           <span class="st">"Nymania.capensis.ITS.alignment.fasta"</span><span class="op">)</span>, format<span class="op">=</span><span class="st">"fasta"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">nnet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://klausvigo.github.io/phangorn/reference/neighborNet.html" class="external-link">neighborNet</a></span><span class="op">(</span><span class="fu"><a href="https://klausvigo.github.io/phangorn/reference/dist.p.html" class="external-link">dist.p</a></span><span class="op">(</span><span class="va">nymania</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ggsplitnet</span><span class="op">(</span><span class="va">nnet</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_tiplab2</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggsplitnet-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
