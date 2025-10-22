@@ -86,6 +86,7 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #' @importFrom ggplot2 ylim
 #' @importFrom ggplot2 coord_flip
 #' @importFrom ggplot2 coord_polar
+#' @importFrom ggplot2 coord_fixed
 #' @importFrom rlang sym
 #' @importFrom ggtree theme_tree
 #' @importFrom methods is
