@@ -3,7 +3,7 @@
 #'
 #'
 #' @title swap_hybrid_minor
-#' @param  a evonet object
+#' @param x evonet object
 #' @param hybrid_nodes a vector of hybrid nodes to have their minor edges swapped
 #' @param node_times an optional argument with node times
 #' @return network
@@ -16,35 +16,35 @@
 #' @export
 
 
-swap_hybrid_minor <-function(net,hybrid_nodes,node_times=NULL){
+swap_hybrid_minor <- function(x, hybrid_nodes, node_times=NULL){
   if(is.null(node_times)){
-    node_times<-node.depth.edgelength(net)
+    node_times <- node.depth.edgelength(x)
   }
-  
-  if(any(!(hybrid_nodes %in% net$reticulation[,2]))){
-    error('You goofed. hybrid_nodes only takes hybrid nodes but was given a tree node. Look at net$reticulation[,2] for hybrid nodes')
+
+  if(any(!(hybrid_nodes %in% x$reticulation[,2]))){
+    stop('You goofed. hybrid_nodes only takes hybrid nodes but was given a tree node. Look at x$reticulation[,2] for hybrid nodes')
   }
-  
+
   for(hyb_nd in hybrid_nodes){
     ##get the edges that point to the hybrid node of interest
-    edge_row<-which(net$edge[,2]==hyb_nd) ##get the edge in the 'edge' matrix
-    ret_row <-which(net$reticulation[,2]==hyb_nd) ##get the edge in the 'reticulation' matrix
-    
+    edge_row <- which(x$edge[,2]==hyb_nd) ##get the edge in the 'edge' matrix
+    ret_row <- which(x$reticulation[,2]==hyb_nd) ##get the edge in the 'reticulation' matrix
+
     ##Get the edges
-    edge_edge<-net$edge[edge_row,]
-    ret_edge<-net$reticulation[ret_row,]
-    
+    edge_edge <- x$edge[edge_row,]
+    ret_edge <- x$reticulation[ret_row,]
+
     ##swap edges
-    net$edge[edge_row,] <- ret_edge
-    net$reticulation[ret_row,]<-edge_edge
-    
+    x$edge[edge_row,] <- ret_edge
+    x$reticulation[ret_row,] <- edge_edge
+
     ##Update edge lengths
-    net$edge.length[edge_row]<-node_times[ret_edge[2]]-node_times[ret_edge[1]]
-    
+    x$edge.length[edge_row]<-node_times[ret_edge[2]]-node_times[ret_edge[1]]
+
     ##update inheritance probabilities if present
-    if(!is.null(net$inheritance)){
-      net$inheritance[ret_row]<-1-net$inheritance[ret_row]
+    if(!is.null(x$inheritance)){
+      x$inheritance[ret_row]<-1-x$inheritance[ret_row]
     }
   }
-  return(net)
+  return(x)
 }

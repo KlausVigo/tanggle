@@ -7,7 +7,7 @@
 ggsplitnet(tr, mapping = NULL, layout = "slanted", mrsd = NULL,
   as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
   ladderize = FALSE, right = FALSE, branch.length = "branch.length",
-  ndigits = NULL, ...)
+  ndigits = NULL, angle = 0, ...)
 }
 \arguments{
 \item{tr}{a networx object}
@@ -32,6 +32,8 @@ ggsplitnet(tr, mapping = NULL, layout = "slanted", mrsd = NULL,
 
 \item{ndigits}{number of digits to round numerical annotation variable}
 
+\item{angle}{rotate the plot.}
+
 \item{...}{additional parameter}
 }
 \value{
@@ -45,11 +47,31 @@ data(yeast, package='phangorn')
 dm <- phangorn::dist.ml(yeast)
 nnet <- phangorn::neighborNet(dm)
 ggsplitnet(nnet) + geom_tiplab2()
+
+library(phangorn)
+fdir <- system.file("extdata/examples", package = "tanggle")
+nymania <- read.phyDat(file.path(fdir,
+           "Nymania.capensis.ITS.alignment.fasta"), format="fasta")
+nnet <- neighborNet(dist.p(nymania))
+ggsplitnet(nnet) + geom_tiplab2()
 }
 \references{
 Schliep, K., Potts, A. J., Morrison, D. A. and Grimm, G. W.
 (2017), Intertwining phylogenetic trees and networks.
 \emph{Methods Ecol Evol}. \bold{8}, 1212--1220. doi:10.1111/2041-210X.12760
+
+Dress, A.W.M. and Huson, D.H. (2004) Constructing Splits Graphs
+\emph{IEEE/ACM Transactions on Computational Biology and Bioinformatics
+(TCBB)}, \bold{1(3)}, 109--115
+
+Bagci, C., Bryant, D., Cetinkaya, B. and Huson, D.H. (2021), Microbial
+Phylogenetic Context Using Phylogenetic Outlines. \emph{Genome Biology and
+Evolution}. \bold{13(9)}, evab213
+
+Potts, A.J. and Hedderson, T.A. and Grimm, G.W. (2013), Constructing
+Phylogenies in the Presence Of Intra-Individual Site Polymorphisms (2ISPs)
+with a Focus on the Nuclear Ribosomal Cistron, \emph{Systematic Biology}.
+\bold{63(1)}, 1--16
 }
 \seealso{
 \code{\link[ggtree]{ggtree}}, \code{\link[phangorn]{networx}},

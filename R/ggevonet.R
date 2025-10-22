@@ -5,16 +5,22 @@ fortify.evonet <- function(model, data, layout = "rectangular",
         ladderize = FALSE, right = FALSE, mrsd = NULL, as.Date = FALSE, ...) {
     class(model) <- "phylo"
     df <- fortify(model, ladderize = ladderize)
-
+    nr <- nrow(df)
     hybridEdge <- logical(nrow(df))
     hybridEdge[grep("#", df$label)] <- TRUE
     df <- cbind(df, hybridEdge = hybridEdge)
 
     reticulation <- model$reticulation
-    df.ret <- df[reticulation[, 1], , drop = FALSE]
-    df.ret[, c("node", "parent")] <- reticulation
-    df.ret[, "hybridEdge"] <- TRUE
-    df <- rbind(df, df.ret)
+    if(nrow(reticulation) > 0){
+        df.ret <- df[reticulation[, 2], , drop = FALSE]
+        df.ret[, c("parent", "node")] <- reticulation
+        df.ret[, "hybridEdge"] <- TRUE
+        df.ret[, "branch"] <- (df$x[df.ret$node] + df$x[df.ret$parent]) / 2
+        df.ret[, "angle"] <- 90
+        branch_y <- c(df$y, (df$y[df.ret$node] + df$y[df.ret$parent]) / 2 )
+        df <- cbind(rbind(df, df.ret), branch_y=branch_y)
+    }
+    if(!is.null(model$df_edge)) df <- dplyr::full_join(df, model$df_edge)
     df
 }
 
@@ -47,14 +53,19 @@ fortify.evonet <- function(model, data, layout = "rectangular",
 #' @importFrom ggplot2 coord_flip
 #' @importFrom ggplot2 coord_polar
 #' @importFrom ggplot2 aes
-#' @importFrom ggplot2 aes_
-#' @importFrom ggplot2 aes_string
+## @importFrom ggplot2 aes_
+## @importFrom ggplot2 aes_string
 #' @importFrom ggtree geom_tree2
 #' @importFrom ggtree theme_tree
+#' @importFrom ape node.depth
 #' @author Klaus Schliep
 #' @examples
 #' (enet <- ape::read.evonet(text='((a:2,(b:1)#H1:1):1,(#H1,c:1):2);'))
 #' ggevonet(enet) + geom_tiplab()
+#' ggevonet(enet, layout = "rectangular") + geom_tiplab()
+## p + geom_label2(aes(x=branch, y=branch_y, label=round(probability, digits=2),
+##    subset = hybridEdge == TRUE)
+#'
 #' @export
 ggevonet <- function(tr, mapping = NULL, layout = "slanted",
         mrsd = NULL, as.Date = FALSE, yscale = "none", yscale_mapping = NULL,
@@ -65,6 +76,7 @@ ggevonet <- function(tr, mapping = NULL, layout = "slanted",
     tr <- ape::reorder.phylo(tr)
     if (is.null(tr$edge.length)) {
         nh <- node_depth_evonet(tr)
+        # nh <- node.depth(tr, 2)
         tr$edge.length <- nh[tr$edge[, 1]] - nh[tr$edge[, 2]]
     }
     if (min_crossing) {
@@ -73,17 +85,18 @@ ggevonet <- function(tr, mapping = NULL, layout = "slanted",
     if (yscale != "none") {
         layout <- "slanted"
     }
+
     if (is.null(mapping)) {
-        mapping <- aes_(~x, ~y)
+      mapping <- aes(!!sym("x"), !!sym("y"))
     } else {
-        mapping <- modifyList(aes_(~x, ~y), mapping)
+        mapping <- modifyList(aes(!!sym("x"), !!sym("y")), mapping)
     }
-    mapping <- modifyList(aes_string(linetype = "hybridEdge"), mapping)
-    p <- ggplot(tr, mapping = mapping, layout = layout, mrsd = mrsd,
-                as.Date = as.Date, yscale = yscale,
+    mapping <- modifyList(aes(linetype = !!sym("hybridEdge")), mapping)
+    p <- suppressWarnings(ggplot(tr, mapping = mapping, layout = layout,
+                mrsd = mrsd, as.Date = as.Date, yscale = yscale,
                 yscale_mapping = yscale_mapping, ladderize = ladderize,
                 right = right, branch.length = branch.length,
-                ndigits = ndigits, ...)
+                ndigits = ndigits, ...))
     p <- p + geom_tree2(layout = layout, ...)
     p <- p + theme_tree(legend.position = "none")
     class(p) <- c("ggtree", class(p))

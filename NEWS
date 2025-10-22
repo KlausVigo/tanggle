@@ -1,3 +1,13 @@
+CHANGES IN VERSION 1.5.1
+-------------------------
+
+NEW FEATURES
+
+    o add function add_hybrid_minor and add Joshua to the author list
+
+    o support for outline plots (Bagci et al. 2021)
+
+
 CHANGES IN VERSION 0.99
 -------------------------
 

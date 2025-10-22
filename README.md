@@ -1,8 +1,14 @@
-[![R-CMD-check](https://github.com/KlausVigo/tanggle/workflows/R-CMD-check/badge.svg)](https://github.com/KlausVigo/tanggle/actions)
+[![Bioc release status](http://www.bioconductor.org/shields/build/release/bioc/tanggle.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/tanggle)
+[![Bioc devel status](http://www.bioconductor.org/shields/build/devel/bioc/tanggle.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/tanggle)
+[![Bioc downloads rank](https://bioconductor.org/shields/downloads/release/tanggle.svg)](http://bioconductor.org/packages/stats/bioc/tanggle/)
+[![Bioc support](https://bioconductor.org/shields/posts/tanggle.svg)](https://support.bioconductor.org/tag/tanggle)
+[![Bioc history](https://bioconductor.org/shields/years-in-bioc/tanggle.svg)](https://bioconductor.org/packages/release/bioc/html/tanggle.html#since)
+[![Bioc last commit](https://bioconductor.org/shields/lastcommit/devel/bioc/tanggle.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/tanggle/)
+[![Bioc dependencies](https://bioconductor.org/shields/dependencies/release/tanggle.svg)](https://bioconductor.org/packages/release/bioc/html/tanggle.html#since)
 [![codecov](https://codecov.io/gh/KlausVigo/tanggle/branch/master/graph/badge.svg)](https://codecov.io/gh/KlausVigo/tanggle)
 [![Coverage Status](https://coveralls.io/repos/github/KlausVigo/tanggle/badge.svg?branch=master)](https://coveralls.io/github/KlausVigo/tanggle?branch=master)
 
-# tanggle <a href='https://klausvigo.github.io/tanggle'><img src='inst/extdata/logo.png' align="right" height="110" /></a>
+# tanggle <a href='https://klausvigo.github.io/tanggle'><img src='man/figures/logo.png' align="right" height="110" /></a>
 
 
 tanggle provides function to plot phylogenetic networks of class `evonet` from *ape* and split graphs of class `networx` from *phangorn*.
@@ -38,4 +44,4 @@ and also
 Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution 2017, 8(1):28-36
 
 
-<img src="inst/extdata/spider.png" align="left" width="120" />
+<img src="man/figures/spider.png" align="left" width="120" />
