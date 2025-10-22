@@ -24,8 +24,9 @@ knitr::opts_chunk$set(
 suppressPackageStartupMessages({
     library(phangorn, quietly = TRUE)
     library(ggtree, quietly = TRUE)
-    library(tanggle, quietly = TRUE)
-    library(ggret, quietly = TRUE)
+    #library(tanggle, quietly = TRUE)
+    #library(ggret, quietly = TRUE)
+    library(ggplot2)
     library(rbenchmark, quietly = TRUE)
     library(profmem, quietly = TRUE)
     library(profvis, quietly = TRUE)
@@ -40,9 +41,11 @@ Here we present a vignette providing a time benchmarking and memory profiling fo
 ```{r load-pkg, echo=TRUE, results='hide'}
 library(phangorn)
 library(ggtree)
-library(tanggle)
-library(ggret)
+#library(tanggle)
+#library(ggret)
+library(ggplot2)
 library(microbenchmark)
+library(rbenchmark)
 library(profmem)
 library(profvis)
 ```
@@ -61,7 +64,7 @@ Nnet
 ```{r}
 split_mbm <- microbenchmark(
     "tanggle" = {
-        ggsplitnet(Nnet) + 
+        tanggle::ggsplitnet(Nnet) + 
             geom_tiplab2(col = "blue", font = 2, hjust = -0.15) + 
             geom_nodepoint(col = "green", size = 0.15) + 
             geom_point(aes(shape = isTip, color = isTip), size = 2)
@@ -77,7 +80,7 @@ autoplot(split_mbm, log = T)
 ```{r}
 # ***tanggle***
 profmem({
-      ggsplitnet(Nnet) + 
+      p <- tanggle::ggsplitnet(Nnet) + 
             geom_tiplab2(col = "blue", font = 2, hjust = -0.15) + 
             geom_nodepoint(col = "green", size = 0.15) + 
             geom_point(aes(shape = isTip, color = isTip), size = 2)
@@ -88,7 +91,7 @@ profmem({
 * Profile visualization
 ```{r}
 # ***tanggle***
-profvis(ggsplitnet(Nnet) + 
+profvis(tanggle::ggsplitnet(Nnet) + 
             geom_tiplab2(col = "blue", font = 2, hjust = -0.15) + 
             geom_nodepoint(col = "green", size = 0.15) + 
             geom_point(aes(shape = isTip, color = isTip), size = 2))
@@ -108,7 +111,7 @@ z <- read.evonet(text = "(Xgordoni,Xmeyeri,((Xcouchianus,(Xvariatus,((Xevelynae,
 ```{r}
 expl_mbm <- microbenchmark(
     "tanggle" = {
-        ggevonet(z, layout = "rectangular") 
+        tanggle::ggevonet(z, layout = "rectangular") 
     },
     "ggret" = {
         ggret::ggret(z, retcol = "blue", retlinetype = 1, arrows = T, rettype = "straight")
@@ -136,10 +139,10 @@ profmem({
 * Profile visualization
 ```{r}
 # ***tanggle***
-profvis(ggevonet(z, layout = "rectangular"))
+profvis(tanggle::ggevonet(z, layout = "rectangular"))
 
 # ***ggret***
-profvis(ggret(z, retcol = "red", retlinetype = 3))
+profvis(ggret::ggret(z, retcol = "red", retlinetype = 3))
 ```
  
 

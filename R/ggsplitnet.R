@@ -70,7 +70,7 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
 #'
 #' Bagci, C., Bryant, D., Cetinkaya, B. and Huson, D.H. (2021), Microbial
 #' Phylogenetic Context Using Phylogenetic Outlines. \emph{Genome Biology and
-#' Evolution}. Volume 13. Issue 9. evab213
+#' Evolution}. \bold{13(9)}, evab213
 #'
 #' Potts, A.J. and Hedderson, T.A. and Grimm, G.W. (2013), Constructing
 #' Phylogenies in the Presence Of Intra-Individual Site Polymorphisms (2ISPs)
