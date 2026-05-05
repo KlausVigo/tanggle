@@ -1,0 +1,14 @@
+## R package reference generated from DESCRIPTION metadata
+citation(auto = meta)
+
+## tanggle article
+bibentry(bibtype = "Article",
+         title = "tanggle: an R package for the visualization of phylogenetic networks",
+         author = c(person(c("Klaus"), "Schliep"),
+                    person(c("Marta"), "Vidal-García"),
+                    person(c("Leann"), "Biancani"),
+                    person(c("L.", "Francisco"), "Henao-Díaz"),
+                    person(c("Eren"), "Ada"),
+                    person(c("Joshua"), "Justison"),
+                    person(c("Claudia"), "Solís-Lemus")),
+         year = "2026", publisher = "Wiley", doi = "10.1002/aps3.70060")
