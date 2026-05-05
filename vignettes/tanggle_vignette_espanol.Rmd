@@ -25,7 +25,7 @@ vignette: |
 bibliography: tanggle_references.bib  
 ---
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
     collapse = TRUE,
     comment = "#>"
@@ -44,7 +44,7 @@ Esta es la viñeta en español para el paquete de R **tanggle**, en ella proveem
 # Lista de funciones
 
 
- name | Brief description |
+Function name | Brief description |
 :-------- | :--------------------------------------------|
 `geom_splitnet` | Adds a *splitnet* layer to a ggplot, to combine visualising data and the network
 `ggevonet` | Grafica una red explícita de un objeto *phylo* 
@@ -69,7 +69,7 @@ O instalar la versión de desarrollo del paquete desde:
 
 ```{r install-gh, eval=FALSE}
 if (!requireNamespace("remotes", quietly=TRUE))
-  install.packages("remotes")
+    install.packages("remotes")
 remotes::install_github("KlausVigo/tanggle")
 ```
 
@@ -98,7 +98,7 @@ Las redes divididas son objetos de visualización de datos que permiten la defin
 * Archivo Nexus creado con SplitsTree [@Huson2006] e importado con la función `read.nexus.network` en *phangorn* [@Schliep2011].
     
 * Carga de red dividida en formato Nexus:
-```{r}
+```{r read_splitnetwork}
 fdir <- system.file("extdata/trees", package = "phangorn")
 Nnet <- phangorn::read.nexus.networx(file.path(fdir,"woodmouse.nxs"))
 ```
@@ -117,34 +117,34 @@ Estimación de una red dividida consenso mediante la función `consensusNet` en 
 ## Para graficar una Red Dividida
 
 Podemos graficar una red con las siguientes opciones por defecto:
-```{r}
+```{r plot_splitnet}
 p <- ggsplitnet(Nnet) + geom_tiplab2()
 p
 ```
 
 
 Luego podemos establecer los límites para los ejes x & y permitiendo la lectura de los nombres de los ejes.
-```{r}
+```{r nicer_plot}
 p <- p + xlim(-0.019, .003) + ylim(-.01, .012) 
 p
 ```
 
 Es posible renombrar las puntas. Aquí cambiamos los nombres por un consecutivo de 1 a 15:
 
-```{r}
+```{r rename}
 Nnet$translate$label <- seq_along(Nnet$tip.label)
 ```
 
 Podemos incluir los nombres de las puntas con `geom_tiplab2`, y con esto personalizar algunas de sus opciones. Por ejemplo, las puntas de color azul, en negrilla e itálicas; también los nodos internos en verde:
 
-```{r}
+```{r color_plot}
 ggsplitnet(Nnet) + geom_tiplab2(col = "blue", font = 4, hjust = -0.15) + 
     geom_nodepoint(col = "green", size = 0.25)
 ```
 
 
 Los nodos pueden ser anotados con `geom_point`.
-```{r}
+```{r geom_point}
 ggsplitnet(Nnet) + geom_point(aes(shape = isTip, color = isTip), size = 2)
 ```
 
@@ -153,13 +153,13 @@ ggsplitnet(Nnet) + geom_point(aes(shape = isTip, color = isTip), size = 2)
 La función `ggevonet` dibuja redes explícitas (árboles filogenéticos reticulados). Una adición reciente en *ape* [@Paradis2018] permite importar árboles en un formato Newick extendido [@Cardona2008].
 
 Importar una red explícita (ejemplo de Fig. 2 en Cardona et al. 2008):
-```{r}
+```{r read_evonet}
 z <- read.evonet(text = "((1,((2,(3,(4)Y#H1)g)e,(((Y#H1,5)h,6)f)X#H2)c)a,
-                 ((X#H2,7)d,8)b)r;")
+                    ((X#H2,7)d,8)b)r;")
 ```
 
 Para graficar una red explícita:
-```{r}
+```{r plot_evonet}
 ggevonet(z, layout = "rectangular") + geom_tiplab() + geom_nodelab()
 p <- ggevonet(z, layout = "slanted") + geom_tiplab() + geom_nodelab()
 p + geom_tiplab(size=3, color="purple")
@@ -180,7 +180,7 @@ Esta viñeta ilustra todas las funciones en el paquete ***tanggle*** para R. Aqu
 \newpage
 \appendix
 # Session info {.unnumbered}
-```{r}
+```{r sessionInfo}
 sessionInfo()
 ```
 
