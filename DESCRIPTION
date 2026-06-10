@@ -1,7 +1,7 @@
 Package: tanggle
 Type: Package
 Title: Visualization of Phylogenetic Networks
-Version: 1.19.1
+Version: 1.19.2
 Authors@R: c(person("Klaus", "Schliep", email="klaus.schliep@gmail.com", 
     role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2941-0161")),
              person("Marta", "Vidal-Garcia", role="aut"), 
@@ -21,7 +21,7 @@ Description: Offers functions for plotting split  (or implicit) networks
     Schliep (2019) <doi:10.1093/bioinformatics/bty633> and 'phangorn' Schliep 
     (2011) <doi:10.1093/bioinformatics/btq706>.
 Depends:
-    R (>= 4.1),
+    R (>= 4.6),
     ggplot2 (>= 3.0.0),
     ggtree
 Imports:
