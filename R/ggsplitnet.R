@@ -22,13 +22,13 @@ fortify.networx <- function(model, data, layout = "unrooted", ladderize = FALSE,
     else coord <- phangorn::coords(model, dim = "equal_angle")
 
     if(angle != 0){
-      rotate_matrix <- function(x, theta){
-        rot_matrix <- matrix(c(cos(theta), sin(theta), -sin(theta), cos(theta)),
-                             2, 2, byrow = TRUE)
-        x %*% rot_matrix
-      }
-      angle <- angle * pi/180 #
-      coord <- rotate_matrix(coord, angle)
+        rotate_matrix <- function(x, theta){
+            rot_matrix <- matrix(c(cos(theta), sin(theta), -sin(theta),
+                                    cos(theta)), 2, 2, byrow = TRUE)
+            x %*% rot_matrix
+        }
+        angle <- angle * pi/180 #
+        coord <- rotate_matrix(coord, angle)
     }
 
     df <- cbind(df, x = coord[df$node, 1], y = coord[df$node, 2],
@@ -111,15 +111,15 @@ ggsplitnet <- function(tr, mapping = NULL, layout = "slanted",
     if(!is(tr, "networx")) stop("tr must be of class 'networx'")
     layout <- match.arg(layout, c("slanted"))
     if (is.null(mapping)) {
-      mapping <- aes(!!sym("x"), !!sym("y"))
+        mapping <- aes(!!sym("x"), !!sym("y"))
     } else {
         mapping <- modifyList(aes(!!sym("x"), !!sym("y")), mapping)
     }
     p <- suppressWarnings(ggplot(tr, mapping = mapping, layout = layout,
-          mrsd = mrsd, as.Date = as.Date, yscale = yscale,
-          yscale_mapping = yscale_mapping, ladderize = ladderize,
-          right = right, branch.length = branch.length, ndigits = ndigits,
-          angle = angle, ...))
+            mrsd = mrsd, as.Date = as.Date, yscale = yscale,
+            yscale_mapping = yscale_mapping, ladderize = ladderize,
+            right = right, branch.length = branch.length, ndigits = ndigits,
+            angle = angle, ...))
     p <- p + geom_splitnet(layout = layout, ...)
     p <- p + theme_tree() + coord_fixed()
     class(p) <- c("ggtree", class(p))
