@@ -87,7 +87,7 @@ ggevonet <- function(tr, mapping = NULL, layout = "slanted",
     }
 
     if (is.null(mapping)) {
-      mapping <- aes(!!sym("x"), !!sym("y"))
+        mapping <- aes(!!sym("x"), !!sym("y"))
     } else {
         mapping <- modifyList(aes(!!sym("x"), !!sym("y")), mapping)
     }

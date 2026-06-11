@@ -1,5 +1,6 @@
 ---
-title: "***tanggle***: Visualization of phylogenetic networks in a *ggplot2* framework"
+title: "***tanggle***: Visualization of phylogenetic networks in a *ggplot2* 
+framework"
 author:
 - name: Klaus Schliep
   affiliation: Graz University of Technology
@@ -19,7 +20,8 @@ output:
   BiocStyle::html_document:
     toc_float: true
 vignette: |
-  %\VignetteIndexEntry{***tanggle***: Visualization of phylogenetic networks in a *ggplot2* framework}
+  %\VignetteIndexEntry{***tanggle***: Visualization of phylogenetic networks in 
+  a *ggplot2* framework}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: tanggle_references.bib  
