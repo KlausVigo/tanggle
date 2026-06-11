@@ -1,0 +1,70 @@
+# tanggle
+
+tanggle provides function to plot phylogenetic networks of class
+`evonet` from *ape* and split graphs of class `networx` from *phangorn*.
+
+You can install `remotes::install_github("KlausVigo/tanggle")`
+
+To install *tanggle* you may need to install the *ggtree* package from
+bioconductor first:
+
+    if (!requireNamespace("BiocManager", quietly = TRUE))
+        install.packages("BiocManager")
+
+    BiocManager::install("ggtree")
+
+You also need to install *ggplot* and *phangorn*. If you are unsure if
+you have installed these packages, you can quickly run the code below:
+
+    packages_needed <- c("ggplot2", "phangorn")
+     packages_to_install <- packages_needed[!(packages_needed %in% installed.packages()[,"Package"])]
+     if(length(packages_to_install)) install.packages(packages_to_install)
+
+If you use tanggle please cite:
+
+Paradis E. & Schliep K. 2018. ape 5.0: an environment for modern
+phylogenetics and evolutionary analyses in R. Bioinformatics 35:
+526-528.
+
+Schliep K.P. 2011. phangorn: phylogenetic analysis in R. Bioinformatics,
+27(4) 592-593
+
+Schliep, K., Potts, A. J., Morrison, D. A. and Grimm, G. W. (2017),
+Intertwining phylogenetic trees and networks. Methods Ecol Evol. 8,
+1212–1220.
+
+and also
+
+Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam.
+ggtree: an R package for visualization and annotation of phylogenetic
+trees with their covariates and other associated data. Methods in
+Ecology and Evolution 2017, 8(1):28-36
+
+![](reference/figures/spider.png)
+
+# Package index
+
+## All functions
+
+- [`geom_splitnet()`](https://klausvigo.github.io/tanggle/reference/geom_splitnet.md)
+  : geom_splitnet
+- [`ggevonet()`](https://klausvigo.github.io/tanggle/reference/ggevonet.md)
+  : ggevonet
+- [`ggsplitnet()`](https://klausvigo.github.io/tanggle/reference/ggsplitnet.md)
+  : ggsplitnet
+- [`minimize_overlap()`](https://klausvigo.github.io/tanggle/reference/minimize_overlap.md)
+  : minimize_overlap reduces reticulation lines crossing over in plots
+- [`node_depth_evonet()`](https://klausvigo.github.io/tanggle/reference/node_depth_evonet.md)
+  : Depth of Nodes
+- [`swap_hybrid_minor()`](https://klausvigo.github.io/tanggle/reference/swap_hybrid_minor.md)
+  : swap_hybrid_minor
+
+# Articles
+
+### All vignettes
+
+- [\*\*\*tanggle\*\*\*: Visualización de redes filogenéticas con
+  \*ggplot2\*](https://klausvigo.github.io/tanggle/articles/tanggle_vignette_espanol.md):
+- [\*\*\*tanggle\*\*\*: Visualization of phylogenetic networks in a
+  \*ggplot2\*
+  framework](https://klausvigo.github.io/tanggle/articles/tanggle_vignette.md):
